@@ -1,4 +1,5 @@
 import React from 'react'
+import Checked from '../../utils/icons/Checked.svg'
 import {
   Image,
   ImageBackground,
@@ -7,7 +8,6 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
-import Checked from '../../utils/icons/Checked'
 
 const SignInPassword = () => {
   return (
