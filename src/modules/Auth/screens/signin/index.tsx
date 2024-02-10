@@ -7,7 +7,7 @@ const SignIn = () => {
       <ImageBackground resizeMode='cover' source={require('../../utils/images/bg.png')} className='flex-1 pb-14 px-4 pt-72 relative'>
         <Text className='text-4xl font-bold text-white mb-4 pl-4'>SignIn</Text>
 
-        <View className='px-4 py-6 rounded-xl flex-col'>
+        <View className='px-4 py-6 rounded-xl flex-col backdrop-blur-[5px] bg-[#313333]/60'>
           <View className='flex-col gap-4 mb-4 opacity-100'>
             <TextInput autoComplete='off' placeholder='Email' className='bg-white py-4 rounded-lg opacity-100 backdrop-blur-0 px-4 text-black placeholder:text-neutral-600'/>
             <TouchableOpacity className='items-center justify-center bg-white rounded-xl p-4' activeOpacity={0.7}>
@@ -36,7 +36,12 @@ const SignIn = () => {
               <Text className='font-bold'>Login with Apple</Text>
           </TouchableOpacity>
           </View>
-          <Text className='text-center text-white'>Don't have a account? <Text className='font-bold'>SignUp</Text></Text>
+          <View className='flex-row justify-center gap-1'>
+            <Text className='text-center text-white'>Don't have a account?</Text>
+            <TouchableOpacity activeOpacity={0.7}>
+              <Text className='font-bold text-white'>SignUp</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </ImageBackground>
     </View>
