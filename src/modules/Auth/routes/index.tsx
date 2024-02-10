@@ -1,7 +1,5 @@
-import AuthStack from "./stack.routes"
+import AuthStack from './stack.routes'
 
 export const AuthRoutes = () => {
-  return (
-    <AuthStack />
-  )
+  return <AuthStack />
 }

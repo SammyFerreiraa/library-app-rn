@@ -5,10 +5,14 @@ import { Text, View, TouchableOpacity } from 'react-native'
 const Home = () => {
   const { navigate } = useNavigation()
   return (
-    <View className='flex-1 items-center justify-center gap-6'>
+    <View className="flex-1 items-center justify-center gap-6">
       <Text>Home</Text>
-      <TouchableOpacity activeOpacity={0.7} className='py-2 px-4 bg-red-500 rounded' onPress={() => navigate('Settings' as never)}>
-        <Text className='text-white text-xl font-semibold'>Settings</Text>
+      <TouchableOpacity
+        activeOpacity={0.7}
+        className="rounded bg-red-500 px-4 py-2"
+        onPress={() => navigate('Settings' as never)}
+      >
+        <Text className="text-xl font-semibold text-white">Settings</Text>
       </TouchableOpacity>
     </View>
   )
