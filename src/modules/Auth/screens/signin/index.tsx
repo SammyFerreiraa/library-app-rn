@@ -48,18 +48,18 @@ const SignIn = () => {
               activeOpacity={0.7}
             >
               <Image
-                alt="google"
+                alt="Google"
                 source={require('../../utils/icons/Google.png')}
                 className="absolute left-4 h-[23.04px] w-[23.80px]"
               />
-              j<Text className="font-bold">Login with Google</Text>
+              <Text className="font-bold">Login with Google</Text>
             </TouchableOpacity>
             <TouchableOpacity
               className="relative flex-row items-center justify-center rounded-xl bg-white p-4"
               activeOpacity={0.7}
             >
               <Image
-                alt="facebook"
+                alt="Facebook"
                 source={require('../../utils/icons/Facebook.png')}
                 className="absolute left-4 h-[23.04px] w-[23.80px]"
               />
@@ -70,7 +70,7 @@ const SignIn = () => {
               activeOpacity={0.7}
             >
               <Image
-                alt="apple"
+                alt="Apple"
                 source={require('../../utils/icons/Apple.png')}
                 className="absolute left-4 h-6 w-6"
               />
