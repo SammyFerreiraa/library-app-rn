@@ -4,7 +4,13 @@ const { Navigator, Screen } = createNativeStackNavigator()
 
 export default function AuthStack() {
   return (
-    <Navigator screenOptions={{ headerShown: false }} initialRouteName="SignIn">
+    <Navigator
+      screenOptions={{
+        headerShown: false,
+        animation: 'slide_from_right',
+      }}
+      initialRouteName="SignIn"
+    >
       <Screen name="SignIn" component={SignIn} />
       <Screen name="SignInPassword" component={SignInPassword} />
     </Navigator>

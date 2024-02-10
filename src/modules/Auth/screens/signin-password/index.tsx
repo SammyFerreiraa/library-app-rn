@@ -21,24 +21,26 @@ const SignInPassword = () => {
 
         <View className="flex-col rounded-xl bg-[#313333]/60 px-4 py-6 backdrop-blur-[5px]">
           <View className="mb-6 flex-row items-center justify-between">
-            <Image
-              source={require('../../utils/images/perfil.png')}
-              alt="perfil"
-              className="h-20 w-20 rounded-full"
-            />
-            <View className="flex-col items-start gap-1">
-              <Text className="text-lg font-bold text-white">
-                Sammy Ferreira
-              </Text>
-              <Text className="text-white">sammy@gmail.com</Text>
+            <View className="flex-row items-center gap-4">
+              <Image
+                source={require('../../utils/images/perfil.png')}
+                alt="perfil"
+                className="h-20 w-20 rounded-full"
+              />
+              <View className="flex-col items-start">
+                <Text className="text-lg font-bold text-white">
+                  Sammy Ferreira
+                </Text>
+                <Text className="text-white">sammy@gmail.com</Text>
+              </View>
             </View>
             <Checked />
           </View>
-          <View className="mb-4 flex-col gap-4 opacity-100">
+          <View className="flex-col gap-4 opacity-100">
             <TextInput
               autoComplete="off"
-              placeholder="Email"
-              className="rounded-lg bg-white px-4 py-4 text-black opacity-100 backdrop-blur-0 placeholder:text-neutral-600"
+              placeholder="Password"
+              className="rounded-lg bg-white px-4 py-4 text-black opacity-100 backdrop-blur-0 placeholder:text-neutral-700"
             />
             <TouchableOpacity
               className="items-center justify-center rounded-xl bg-white p-4"
