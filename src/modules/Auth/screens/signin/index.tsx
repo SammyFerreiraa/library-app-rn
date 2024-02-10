@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native'
 import React from 'react'
 import {
   Image,
@@ -9,6 +10,7 @@ import {
 } from 'react-native'
 
 const SignIn = () => {
+  const { navigate } = useNavigation()
   return (
     <View className="flex-1">
       <ImageBackground
@@ -28,6 +30,7 @@ const SignIn = () => {
             <TouchableOpacity
               className="items-center justify-center rounded-xl bg-white p-4"
               activeOpacity={0.7}
+              onPress={() => navigate('SignInPassword' as never)}
             >
               <Text className="font-bold">Continue</Text>
             </TouchableOpacity>
