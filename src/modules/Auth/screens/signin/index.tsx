@@ -1,6 +1,8 @@
 import { useNavigation } from '@react-navigation/native'
-import React from 'react'
+import axios from 'axios'
+import React, { useState } from 'react'
 import {
+  Alert,
   Image,
   ImageBackground,
   Text,
@@ -8,9 +10,32 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
+import { useUser } from '../../hooks/useUser'
 
 const SignIn = () => {
+  const { setEmail, setName } = useUser()
+  const [email, setEmailInput] = useState<string>('')
   const { navigate } = useNavigation()
+
+  const handleSignIn = () => {
+    const login = async () => {
+      try {
+        await axios
+          .post('http://192.168.1.2:3000/infos', {
+            email,
+          })
+          .then((res) => {
+            setEmail(res.data.email)
+            setName(res.data.name)
+            setEmailInput('')
+            navigate('SignInPassword' as never)
+          })
+      } catch (error) {
+        Alert.alert('Error', 'Email not found')
+      }
+    }
+    login()
+  }
   return (
     <ImageBackground
       resizeMode="cover"
@@ -23,13 +48,15 @@ const SignIn = () => {
         <View className="mb-4 flex-col gap-4 opacity-100">
           <TextInput
             autoComplete="off"
+            value={email}
             placeholder="Email"
             className="rounded-lg bg-white px-4 py-4 text-black opacity-100 backdrop-blur-0 placeholder:text-neutral-700"
+            onChangeText={setEmailInput}
           />
           <TouchableOpacity
             className="items-center justify-center rounded-xl bg-white p-4"
             activeOpacity={0.7}
-            onPress={() => navigate('SignInPassword' as never)}
+            onPress={handleSignIn}
           >
             <Text className="font-bold">Continue</Text>
           </TouchableOpacity>

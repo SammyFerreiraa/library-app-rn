@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Checked from '../../utils/icons/Checked.svg'
 import {
+  Alert,
   Image,
   ImageBackground,
   Text,
@@ -8,8 +9,34 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
+import { useUser } from '../../hooks/useUser'
+import axios from 'axios'
+import { useAuth } from '@/hooks/useAuth'
 
 const SignInPassword = () => {
+  const { email, name, setEmail, setName } = useUser()
+  const { signIn } = useAuth()
+  const [password, setPassword] = useState<string>('')
+
+  const login = () => {
+    const login = async () => {
+      try {
+        await axios
+          .post('http://192.168.1.2:3000/login', {
+            email,
+            password,
+          })
+          .then((res) => {
+            setEmail('')
+            setName('')
+            signIn(res.data)
+          })
+      } catch (error) {
+        Alert.alert('Error', 'Wrong password')
+      }
+    }
+    login()
+  }
   return (
     <View className="flex-1">
       <ImageBackground
@@ -28,10 +55,8 @@ const SignInPassword = () => {
                 className="h-20 w-20 rounded-full"
               />
               <View className="flex-col items-start">
-                <Text className="text-lg font-bold text-white">
-                  Sammy Ferreira
-                </Text>
-                <Text className="text-white">sammy@gmail.com</Text>
+                <Text className="text-lg font-bold text-white">{name}</Text>
+                <Text className="text-white">{email}</Text>
               </View>
             </View>
             <Checked />
@@ -41,10 +66,12 @@ const SignInPassword = () => {
               autoComplete="off"
               placeholder="Password"
               className="rounded-lg bg-white px-4 py-4 text-black opacity-100 backdrop-blur-0 placeholder:text-neutral-700"
+              onChangeText={setPassword}
             />
             <TouchableOpacity
               className="items-center justify-center rounded-xl bg-white p-4"
               activeOpacity={0.7}
+              onPress={login}
             >
               <Text className="font-bold">Continue</Text>
             </TouchableOpacity>
