@@ -34,6 +34,7 @@ const useSignInModel = () => {
     emailError,
     setEmailInput,
     handleSignIn,
+    navigate,
   }
 }
 

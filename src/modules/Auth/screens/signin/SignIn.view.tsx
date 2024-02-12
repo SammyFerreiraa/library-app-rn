@@ -14,6 +14,7 @@ const SignInView = ({
   emailError,
   setEmailInput,
   handleSignIn,
+  navigate,
 }: ReturnType<typeof useSignInModel>) => {
   return (
     <ImageBackground
@@ -89,7 +90,10 @@ const SignInView = ({
           <Text className="text-center text-white">
             Don&apos;t have a account?
           </Text>
-          <TouchableOpacity activeOpacity={0.7}>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={() => navigate('SignUp' as never)}
+          >
             <Text className="font-bold text-white">SignUp</Text>
           </TouchableOpacity>
         </View>
