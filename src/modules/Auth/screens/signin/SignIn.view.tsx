@@ -20,7 +20,7 @@ const SignInView = ({
     <ImageBackground
       resizeMode="cover"
       source={require('../../utils/images/bg.png')}
-      className="relative flex-1 px-4 pb-14 pt-72"
+      className="relative flex-1 justify-end px-4 pb-14"
     >
       <Text className="mb-4 pl-4 text-4xl font-bold text-white">SignIn</Text>
 
