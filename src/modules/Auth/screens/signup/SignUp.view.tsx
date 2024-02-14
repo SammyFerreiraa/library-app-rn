@@ -6,8 +6,8 @@ import {
   TouchableOpacity,
   Text,
 } from 'react-native'
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import useSignUpModel from './SignUp.model'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 const SignUpView = ({
   name,
@@ -27,17 +27,10 @@ const SignUpView = ({
     <ImageBackground
       resizeMode="cover"
       source={require('../../utils/images/bg.png')}
-      className="flex-1 px-4"
+      className="flex-1 px-4 pt-48"
     >
-      <KeyboardAwareScrollView
-        contentContainerStyle={{
-          justifyContent: 'flex-end',
-          flexGrow: 1,
-          paddingBottom: 56,
-        }}
-      >
-        <Text className="mb-4 pl-4 text-4xl font-bold text-white">SignUp</Text>
-
+      <Text className="mb-4 pl-4 text-4xl font-bold text-white">SignUp</Text>
+      <KeyboardAwareScrollView contentContainerStyle={{ paddingBottom: 16 }}>
         <View className="flex-col rounded-xl bg-[#313333]/60 px-4 py-6 backdrop-blur-[5px]">
           <View className="mb-4 flex-col gap-4 opacity-100">
             <TextInput
@@ -76,7 +69,6 @@ const SignUpView = ({
               value={address}
               onChangeText={setAddress}
             />
-
             <Text className="items-center text-left text-white">
               By selecting Create Account below, I agree to
               <TouchableOpacity activeOpacity={0.7} className="text-center ">
