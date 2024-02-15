@@ -1,16 +1,20 @@
 import BannerBook from '@/components/banner-book'
-import { useBook } from '@/hooks/useBook'
+import { bookProps } from '@/hooks/useBook'
 import { AntDesign } from '@expo/vector-icons'
 import React from 'react'
 import { View, TouchableOpacity, ScrollView, Text } from 'react-native'
 
-export const SectionBooks = () => {
-  const { books } = useBook()
-
+export const SectionBooks = ({
+  books,
+  title,
+}: {
+  books: bookProps[]
+  title: string
+}) => {
   return (
     <View className="gap-4">
       <View className="flex-row items-center justify-between px-4">
-        <Text className="text-2xl font-bold text-white">Recomendados</Text>
+        <Text className="text-2xl font-bold text-white">{title}</Text>
         <TouchableOpacity
           className="flex-row items-center gap-2"
           activeOpacity={0.7}
