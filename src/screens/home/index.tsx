@@ -24,7 +24,8 @@ const Home = () => {
       <View className="flex-col gap-8">
         <ScrollView
           horizontal
-          className="gap-3 pl-2"
+          className="gap-0"
+          contentContainerStyle={{ paddingHorizontal: 16, gap: 8 }}
           showsHorizontalScrollIndicator={false}
         >
           <View className="h-20 w-20 items-center justify-center rounded-full border-2 border-white bg-black">
@@ -76,7 +77,7 @@ const Home = () => {
               alt={'acotar'}
             />
           </View>
-          <View className="mr-4 h-20 w-20 items-center justify-center rounded-full border-2 border-white bg-black">
+          <View className="h-20 w-20 items-center justify-center rounded-full border-2 border-white bg-black">
             <Image
               className="h-16 w-16 rounded-full border-2 "
               source={require('../../utils/books/acotar.jpg')}
@@ -85,8 +86,9 @@ const Home = () => {
           </View>
         </ScrollView>
         <ScrollView
-          className="gap-1 pl-3"
+          className="gap-0"
           horizontal
+          contentContainerStyle={{ paddingHorizontal: 16, gap: 8 }}
           showsHorizontalScrollIndicator={false}
         >
           <View className="flex-row items-center justify-center gap-1 rounded-3xl bg-white pb-3 pl-4 pr-5 pt-2">
@@ -97,7 +99,7 @@ const Home = () => {
             <Feather name={'book-open'} size={18} color={'#fff'} />
             <Text className="font-semibold text-white">5-Minutes read</Text>
           </View>
-          <View className="mr-6 flex-row items-center justify-center gap-1 rounded-3xl border-[1px] border-neutral-600 bg-black pb-3 pl-4 pr-5 pt-2">
+          <View className="flex-row items-center justify-center gap-1 rounded-3xl border-[1px] border-neutral-600 bg-black pb-3 pl-4 pr-5 pt-2">
             <MaterialIcons name="headset" size={18} color={'#fff'} />
             <Text className="font-semibold text-white">Quick Listen</Text>
           </View>
