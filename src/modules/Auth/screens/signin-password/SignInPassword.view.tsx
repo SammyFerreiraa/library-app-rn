@@ -47,6 +47,7 @@ const SignInPasswordView = ({
             className={`rounded-lg bg-white px-4 py-4 text-black opacity-100 backdrop-blur-0 placeholder:text-neutral-700 ${passwordError && 'border-2 border-red-500'}`}
             secureTextEntry={true}
             onChangeText={setPassword}
+            onSubmitEditing={handleSignIn}
           />
           <TouchableOpacity
             className="items-center justify-center rounded-xl bg-white p-4"
