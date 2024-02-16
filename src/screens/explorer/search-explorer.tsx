@@ -12,7 +12,7 @@ const SearchExplorer = () => {
         style={{ top: 17, left: 16, position: 'absolute', zIndex: 2 }}
       />
       <TextInput
-        placeholder="Titulo, Autor, ISBN..."
+        placeholder="Titulo, Autor, etc..."
         placeholderTextColor={'#939999'}
         className="w-full rounded-md border-[1px] border-[#939999] bg-[#313333] py-3 pl-11 text-white"
       />
