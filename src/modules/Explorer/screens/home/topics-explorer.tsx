@@ -1,3 +1,4 @@
+import { Link } from '@react-navigation/native'
 import React from 'react'
 import { View, TouchableOpacity, Text } from 'react-native'
 
@@ -11,13 +12,19 @@ const TopicsExplorer = () => {
             activeOpacity={0.6}
             className="rounded-lg bg-[#313333] px-4 py-2"
           >
-            <Text className="text-white">Ficção</Text>
+            <Link to={{ screen: 'category', params: { category: 'Ficção' } }}>
+              <Text className="text-white">Ficção</Text>
+            </Link>
           </TouchableOpacity>
           <TouchableOpacity
             activeOpacity={0.6}
             className="rounded-lg bg-[#313333] px-4  py-2"
           >
-            <Text className="text-white">Mente e filosofia</Text>
+            <Link
+              to={{ screen: 'category', params: { category: 'Mitologia' } }}
+            >
+              <Text className="text-white">Mitologia</Text>
+            </Link>
           </TouchableOpacity>
           <TouchableOpacity
             activeOpacity={0.6}
@@ -77,7 +84,9 @@ const TopicsExplorer = () => {
             activeOpacity={0.6}
             className="rounded-lg bg-[#313333] px-4  py-2"
           >
-            <Text className="text-white">Hot</Text>
+            <Link to={{ screen: 'category', params: { category: 'Romance' } }}>
+              <Text className="text-white">Romance</Text>
+            </Link>
           </TouchableOpacity>
           <TouchableOpacity
             activeOpacity={0.6}

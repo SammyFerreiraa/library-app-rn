@@ -6,7 +6,7 @@ import { ScrollView, Text, View } from 'react-native'
 import SearchExplorer from './search-explorer'
 import TopicsExplorer from './topics-explorer'
 
-const Explorer = () => {
+const Home = () => {
   const { books } = useBook()
   return (
     <View className="flex-1 bg-black pb-[68px]">
@@ -39,4 +39,4 @@ const Explorer = () => {
   )
 }
 
-export default Explorer
+export default Home

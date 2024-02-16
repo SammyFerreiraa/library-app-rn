@@ -1,7 +1,10 @@
+import { useBook } from '@/hooks/useBook'
+import { shuffleArray } from '@/utils/functions/shuffleArray'
 import React from 'react'
 import { ScrollView, View, Image } from 'react-native'
 
 export const Stories = () => {
+  const { books } = useBook()
   return (
     <ScrollView
       horizontal
@@ -9,62 +12,20 @@ export const Stories = () => {
       contentContainerStyle={{ paddingHorizontal: 16, gap: 8 }}
       showsHorizontalScrollIndicator={false}
     >
-      <View className="h-20 w-20 items-center justify-center rounded-full border-2 border-white bg-black">
-        <Image
-          className="h-16 w-16 rounded-full border-2 "
-          source={require('../../utils/books/acotar.jpg')}
-          alt={'acotar'}
-        />
-      </View>
-      <View className="h-20 w-20 items-center justify-center rounded-full border-2 border-white bg-black">
-        <Image
-          className="h-16 w-16 rounded-full border-2 "
-          source={require('../../utils/books/futurama.png')}
-          alt={'acotar'}
-        />
-      </View>
-      <View className="h-20 w-20 items-center justify-center rounded-full border-2 border-white bg-black">
-        <Image
-          className="h-16 w-16 rounded-full border-2 "
-          source={require('../../utils/books/explore-your-crative.png')}
-          alt={'acotar'}
-        />
-      </View>
-      <View className="h-20 w-20 items-center justify-center rounded-full border-2 border-white bg-black">
-        <Image
-          className="h-16 w-16 rounded-full border-2 "
-          source={require('../../utils/books/the-good-guy.png')}
-          alt={'acotar'}
-        />
-      </View>
-      <View className="h-20 w-20 items-center justify-center rounded-full border-2 border-white bg-black">
-        <Image
-          className="h-16 w-16 rounded-full border-2 "
-          source={require('../../utils/books/acomaf.jpg')}
-          alt={'acotar'}
-        />
-      </View>
-      <View className="h-20 w-20 items-center justify-center rounded-full border-2 border-white bg-black">
-        <Image
-          className="h-16 w-16 rounded-full border-2 "
-          source={require('../../utils/books/acotar.jpg')}
-          alt={'acotar'}
-        />
-      </View>
-      <View className="h-20 w-20 items-center justify-center rounded-full border-2 border-white bg-black">
-        <Image
-          className="h-16 w-16 rounded-full border-2 "
-          source={require('../../utils/books/acotar.jpg')}
-          alt={'acotar'}
-        />
-      </View>
-      <View className="h-20 w-20 items-center justify-center rounded-full border-2 border-white bg-black">
-        <Image
-          className="h-16 w-16 rounded-full border-2 "
-          source={require('../../utils/books/acotar.jpg')}
-          alt={'acotar'}
-        />
-      </View>
+      {shuffleArray(books.filter((book) => book)).map((book) => (
+        <View
+          className="h-20 w-20 items-center justify-center rounded-full border-2 border-white bg-black"
+          key={book.id}
+        >
+          <Image
+            className="h-16 w-16 rounded-full border-2 "
+            source={{
+              uri: book.image,
+            }}
+            alt={book.title}
+          />
+        </View>
+      ))}
     </ScrollView>
   )
 }
