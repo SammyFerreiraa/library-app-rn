@@ -2,7 +2,7 @@ import { useAuth } from '@/hooks/useAuth'
 import React from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
 
-const Settings = () => {
+const Menu = () => {
   const { signOut } = useAuth()
   return (
     <View className="flex-1 items-center justify-between py-8">
@@ -19,4 +19,4 @@ const Settings = () => {
   )
 }
 
-export default Settings
+export default Menu
