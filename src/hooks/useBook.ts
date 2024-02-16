@@ -8,6 +8,7 @@ export type bookProps = {
   delays: number
   image: string
   recommended: boolean
+  category: string
 }
 interface useBookProps {
   books: bookProps[]
