@@ -1,8 +1,14 @@
-import { Link } from '@react-navigation/native'
+import { useNavigation } from '@react-navigation/native'
 import React from 'react'
 import { View, TouchableOpacity, Text } from 'react-native'
+import { StackNavigationProp } from '@react-navigation/stack'
+
+export type RootStackParamList = {
+  category: { category: string } | undefined
+}
 
 const TopicsExplorer = () => {
+  const nav = useNavigation<StackNavigationProp<RootStackParamList>>()
   return (
     <View className="mx-4 mb-10 items-start">
       <Text className="pb-4 text-2xl font-bold text-white">Tópicos</Text>
@@ -11,20 +17,20 @@ const TopicsExplorer = () => {
           <TouchableOpacity
             activeOpacity={0.6}
             className="rounded-lg bg-[#313333] px-4 py-2"
+            onPress={() => {
+              nav.navigate('category', { category: 'Ficção' })
+            }}
           >
-            <Link to={{ screen: 'category', params: { category: 'Ficção' } }}>
-              <Text className="text-white">Ficção</Text>
-            </Link>
+            <Text className="text-white">Ficção</Text>
           </TouchableOpacity>
           <TouchableOpacity
             activeOpacity={0.6}
             className="rounded-lg bg-[#313333] px-4  py-2"
+            onPress={() => {
+              nav.navigate('category', { category: 'Mitologia' })
+            }}
           >
-            <Link
-              to={{ screen: 'category', params: { category: 'Mitologia' } }}
-            >
-              <Text className="text-white">Mitologia</Text>
-            </Link>
+            <Text className="text-white">Mitologia</Text>
           </TouchableOpacity>
           <TouchableOpacity
             activeOpacity={0.6}
@@ -83,10 +89,13 @@ const TopicsExplorer = () => {
           <TouchableOpacity
             activeOpacity={0.6}
             className="rounded-lg bg-[#313333] px-4  py-2"
+            onPress={() =>
+              nav.navigate('category', {
+                category: 'Romance',
+              })
+            }
           >
-            <Link to={{ screen: 'category', params: { category: 'Romance' } }}>
-              <Text className="text-white">Romance</Text>
-            </Link>
+            <Text className="text-white">Romance</Text>
           </TouchableOpacity>
           <TouchableOpacity
             activeOpacity={0.6}
