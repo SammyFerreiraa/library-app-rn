@@ -1,6 +1,5 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import Home from '../screens/home'
-import Categories from '../screens/section/[category]'
+import { Home, Categories } from '../screens'
 const { Navigator, Screen } = createNativeStackNavigator()
 
 export default function ExploreStack() {
