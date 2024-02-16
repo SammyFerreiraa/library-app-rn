@@ -1,4 +1,4 @@
-import { Home, Menu } from '../screens'
+import { Explorer, Home } from '../screens'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { Octicons, Entypo } from '@expo/vector-icons'
 
@@ -38,7 +38,7 @@ export default function AppStack() {
       />
       <Screen
         name="Pesquisar"
-        component={Menu}
+        component={Explorer}
         options={{
           tabBarIcon: ({ color }) => (
             <Entypo name="magnifying-glass" size={28} color={color} />
@@ -47,7 +47,7 @@ export default function AppStack() {
       />
       <Screen
         name="Biblioteca"
-        component={Menu}
+        component={Explorer}
         options={{
           tabBarIcon: ({ color }) => (
             <Entypo name="book" size={24} color={color} />

@@ -29,7 +29,7 @@ const Home = () => {
   }, [authData?.token, setBooks])
 
   return (
-    <View className="flex-1 bg-black pb-20">
+    <View className="flex-1 bg-black pb-[68px]">
       <ScrollView
         className="flex-1 pt-5"
         showsVerticalScrollIndicator={false}
