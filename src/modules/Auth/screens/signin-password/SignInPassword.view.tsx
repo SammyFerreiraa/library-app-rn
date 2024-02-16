@@ -48,6 +48,8 @@ const SignInPasswordView = ({
             secureTextEntry={true}
             onChangeText={setPassword}
             onSubmitEditing={handleSignIn}
+            returnKeyType="next"
+            blurOnSubmit
           />
           <TouchableOpacity
             className="items-center justify-center rounded-xl bg-white p-4"

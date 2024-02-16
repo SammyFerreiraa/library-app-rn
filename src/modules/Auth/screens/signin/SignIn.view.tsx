@@ -33,6 +33,8 @@ const SignInView = ({
             className={`rounded-lg bg-white px-4 py-4 text-black opacity-100 backdrop-blur-0 placeholder:text-neutral-700 ${emailError && 'border-2 border-red-500'}`}
             onChangeText={setEmailInput}
             onSubmitEditing={handleSignIn}
+            returnKeyType="next"
+            blurOnSubmit
           />
           <TouchableOpacity
             className="items-center justify-center rounded-xl bg-white p-4"
