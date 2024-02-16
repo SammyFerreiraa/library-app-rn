@@ -1,14 +1,10 @@
 import { SectionBooks } from '@/components/section-books'
 import { useBook } from '@/hooks/useBook'
-import { AntDesign } from '@expo/vector-icons'
+import { shuffleArray } from '@/utils/functions/shuffleArray'
 import React from 'react'
-import {
-  ScrollView,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from 'react-native'
+import { ScrollView, Text, View } from 'react-native'
+import SearchExplorer from './search-explorer'
+import TopicsExplorer from './topics-explorer'
 
 const Explorer = () => {
   const { books } = useBook()
@@ -24,118 +20,18 @@ const Explorer = () => {
             Explorer
           </Text>
         </View>
-        <View className="mx-4 mb-11" style={{ position: 'relative' }}>
-          <AntDesign
-            name="search1"
-            size={18}
-            color="#939999"
-            style={{ top: 17, left: 16, position: 'absolute', zIndex: 2 }}
-          />
-          <TextInput
-            placeholder="Titulo, Autor, ISBN..."
-            placeholderTextColor={'#939999'}
-            className="w-full rounded-md border-[1px] border-[#939999] bg-[#313333] py-3 pl-11 text-white"
-          />
-        </View>
-        <View className="mx-4 mb-10 items-start">
-          <Text className="pb-4 text-2xl font-bold text-white">Tópicos</Text>
-          <View className="flex-col" style={{ gap: 13 }}>
-            <View className="flex-row gap-2">
-              <TouchableOpacity
-                activeOpacity={0.6}
-                className="rounded-lg bg-[#313333] px-4 py-2"
-              >
-                <Text className="text-white">Ficção</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                activeOpacity={0.6}
-                className="rounded-lg bg-[#313333] px-4  py-2"
-              >
-                <Text className="text-white">Mente e filosofia</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                activeOpacity={0.6}
-                className="rounded-lg bg-[#313333] px-4  py-2"
-              >
-                <Text className="text-white">Cultura e sociedade</Text>
-              </TouchableOpacity>
-            </View>
-            <View className="flex-row gap-2">
-              <TouchableOpacity
-                activeOpacity={0.6}
-                className="rounded-lg bg-[#313333] px-4  py-2"
-              >
-                <Text className="text-white">Saúde e Fitness</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                activeOpacity={0.6}
-                className="rounded-lg bg-[#313333] px-4  py-2"
-              >
-                <Text className="text-white">Biografias</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                activeOpacity={0.6}
-                className="rounded-lg bg-[#313333] px-4  py-2"
-              >
-                <Text className="text-white">Life style</Text>
-              </TouchableOpacity>
-            </View>
-            <View className="flex-row gap-2">
-              <TouchableOpacity
-                activeOpacity={0.6}
-                className="rounded-lg bg-[#313333] px-4  py-2"
-              >
-                <Text className="text-white">Educação</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                activeOpacity={0.6}
-                className="rounded-lg bg-[#313333] px-4  py-2"
-              >
-                <Text className="text-white">Futuro</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                activeOpacity={0.6}
-                className="rounded-lg bg-[#313333] px-4  py-2"
-              >
-                <Text className="text-white">Tecnologia</Text>
-              </TouchableOpacity>
-            </View>
-            <View className="flex-row gap-2">
-              <TouchableOpacity
-                activeOpacity={0.6}
-                className="rounded-lg bg-[#313333] px-4  py-2"
-              >
-                <Text className="text-white">História</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                activeOpacity={0.6}
-                className="rounded-lg bg-[#313333] px-4  py-2"
-              >
-                <Text className="text-white">Hot</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                activeOpacity={0.6}
-                className="rounded-lg bg-[#313333] px-4  py-2"
-              >
-                <Text className="text-white">Mangás</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                activeOpacity={0.6}
-                className="rounded-lg bg-[#313333] px-4  py-2"
-              >
-                <Text className="text-white">Novels</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
+        <SearchExplorer />
+        <TopicsExplorer />
         <View className="flex-col" style={{ gap: 32 }}>
           <SectionBooks
-            books={books.filter((book) => book.recommended)}
+            books={shuffleArray(
+              books.filter((book) => book.category === 'Ficção'),
+            )}
             title="Ficção"
           />
           <SectionBooks
-            books={books.filter((book) => book.author === 'Rick Riordan')}
-            title="Hot"
+            books={books.filter((book) => book.category === 'Mitologia')}
+            title="Mitologia"
           />
         </View>
       </ScrollView>
