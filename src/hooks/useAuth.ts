@@ -1,4 +1,6 @@
 import { create } from 'zustand'
+import { persist, createJSONStorage } from 'zustand/middleware'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 interface userData {
   user: {
@@ -19,12 +21,20 @@ interface useAuthProps {
   signOut: () => Promise<void>
 }
 
-export const useAuth = create<useAuthProps>((set) => ({
-  authData: undefined,
-  signIn: (user: userData) => {
-    set({ authData: user })
-  },
-  signOut: async () => {
-    set({ authData: undefined })
-  },
-}))
+export const useAuth = create(
+  persist<useAuthProps>(
+    (set) => ({
+      authData: undefined,
+      signIn: (user: userData) => {
+        set({ authData: user })
+      },
+      signOut: async () => {
+        set({ authData: undefined })
+      },
+    }),
+    {
+      name: 'auth-storage',
+      storage: createJSONStorage(() => AsyncStorage),
+    },
+  ),
+)
