@@ -28,7 +28,7 @@ export default function AppStack() {
       }}
     >
       <Screen
-        name="Home"
+        name="Inicio"
         component={Home}
         options={{
           tabBarIcon: ({ color }) => (
@@ -37,7 +37,7 @@ export default function AppStack() {
         }}
       />
       <Screen
-        name="Explorer"
+        name="Pesquisar"
         component={Menu}
         options={{
           tabBarIcon: ({ color }) => (
@@ -46,7 +46,7 @@ export default function AppStack() {
         }}
       />
       <Screen
-        name="Library"
+        name="Biblioteca"
         component={Menu}
         options={{
           tabBarIcon: ({ color }) => (

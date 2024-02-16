@@ -29,9 +29,9 @@ const Home = () => {
   }, [authData?.token, setBooks])
 
   return (
-    <View className="flex-1">
+    <View className="flex-1 bg-black pb-20">
       <ScrollView
-        className="flex-1 bg-black pt-5"
+        className="flex-1 pt-5"
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ alignItems: 'center', paddingBottom: 32 }}
       >
