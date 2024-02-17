@@ -44,7 +44,7 @@ const SectionSelect = ({ section, setSection }: SectionSelectProps) => {
         <Text
           className={`${section === 'Progresso' ? 'text-[#313333]' : 'text-white'} font-bold`}
         >
-          Em Progresso
+          Lendo atualmente
         </Text>
       </TouchableOpacity>
       <TouchableOpacity
@@ -60,7 +60,7 @@ const SectionSelect = ({ section, setSection }: SectionSelectProps) => {
         <Text
           className={`${section === 'Completos' ? 'text-[#313333]' : 'text-white'} font-bold`}
         >
-          Completos
+          Lidos
         </Text>
       </TouchableOpacity>
     </ScrollView>

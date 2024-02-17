@@ -9,10 +9,12 @@ import { useAuth } from '@/hooks/useAuth'
 import axios from 'axios'
 import { useBook } from '@/hooks/useBook'
 import { useCompletedRentals } from '@/modules/Library/hooks/useCompletedRentals'
+import { useRented } from '@/modules/Library/hooks/useRented'
 
 const Home = () => {
   const { setBooks, books } = useBook()
   const { setCompletedRentals } = useCompletedRentals()
+  const { setRented } = useRented()
   const { authData } = useAuth()
   useEffect(() => {
     const getBooks = async () => {
@@ -38,9 +40,25 @@ const Home = () => {
         .then((res) => {
           setCompletedRentals(res.data)
         })
+
+      await axios
+        .get(`http://10.0.0.106:3000/users`, {
+          headers: {
+            Authorization: 'Bearer ' + authData?.token,
+          },
+        })
+        .then((res) => {
+          setRented(res.data.books)
+        })
     }
     getLibrary()
-  }, [authData?.token, setBooks, setCompletedRentals, authData?.user.id])
+  }, [
+    authData?.token,
+    setBooks,
+    setCompletedRentals,
+    authData?.user.id,
+    setRented,
+  ])
 
   return (
     <View className="flex-1 bg-black pb-[68px]">
