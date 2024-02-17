@@ -2,6 +2,7 @@ import { Home } from '../screens'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { Octicons, Entypo } from '@expo/vector-icons'
 import { ExploreRoutes } from '@/modules/Explorer/routes'
+import { LibraryRoutes } from '@/modules/Library/routes'
 
 const { Screen, Navigator } = createBottomTabNavigator()
 
@@ -48,7 +49,7 @@ export default function AppStack() {
       />
       <Screen
         name="Biblioteca"
-        component={ExploreRoutes}
+        component={LibraryRoutes}
         options={{
           tabBarIcon: ({ color }) => (
             <Entypo name="book" size={24} color={color} />
