@@ -8,9 +8,11 @@ import { Header } from './header-home'
 import { useAuth } from '@/hooks/useAuth'
 import axios from 'axios'
 import { useBook } from '@/hooks/useBook'
+import { useCompletedRentals } from '@/modules/Library/hooks/useCompletedRentals'
 
 const Home = () => {
   const { setBooks, books } = useBook()
+  const { setCompletedRentals } = useCompletedRentals()
   const { authData } = useAuth()
   useEffect(() => {
     const getBooks = async () => {
@@ -26,7 +28,19 @@ const Home = () => {
         })
     }
     getBooks()
-  }, [authData?.token, setBooks])
+    const getLibrary = async () => {
+      await axios
+        .get(`http://10.0.0.106:3000/rentals/${authData?.user.id}`, {
+          headers: {
+            Authorization: 'Bearer ' + authData?.token,
+          },
+        })
+        .then((res) => {
+          setCompletedRentals(res.data)
+        })
+    }
+    getLibrary()
+  }, [authData?.token, setBooks, setCompletedRentals, authData?.user.id])
 
   return (
     <View className="flex-1 bg-black pb-[68px]">
