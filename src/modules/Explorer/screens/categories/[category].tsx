@@ -18,28 +18,38 @@ export default function Categories() {
         className="mx-5 flex-1 pt-5"
       >
         <View className="mb-8 flex-col gap-6">
-          <AntDesign
-            name="left"
-            size={24}
-            color="white"
-            onPress={() => nav.goBack()}
-          />
+          <TouchableOpacity activeOpacity={0.7}>
+            <AntDesign
+              name="left"
+              size={24}
+              color="white"
+              onPress={() => nav.goBack()}
+            />
+          </TouchableOpacity>
           <Text className="text-3xl font-bold italic text-white">
             {category}
           </Text>
         </View>
 
-        <View className="flex-row flex-wrap justify-between">
+        <View className="flex-row flex-wrap justify-evenly">
           {books
             .filter((book) => book.category === category)
             .map((book) => (
-              <TouchableOpacity key={book.id} activeOpacity={0.7}>
-                <View className="mb-10 max-w-[195px]">
+              <TouchableOpacity
+                key={book.id}
+                activeOpacity={0.7}
+                className="w-[45%]"
+              >
+                <View className="mb-10">
                   <Image
                     source={{ uri: book.image }}
                     alt={book.title}
                     resizeMode="cover"
-                    className="mb-4 h-[283.03px] w-[195px]"
+                    style={{
+                      width: '100%',
+                      height: 256,
+                      marginBottom: 16,
+                    }}
                   />
                   <Text
                     className="text-left font-medium text-white"
