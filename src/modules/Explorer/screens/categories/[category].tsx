@@ -47,7 +47,7 @@ export default function Categories() {
                     resizeMode="cover"
                     style={{
                       width: '100%',
-                      height: 256,
+                      height: 270,
                       marginBottom: 16,
                     }}
                   />
