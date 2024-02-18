@@ -39,6 +39,7 @@ export const SectionBooks = ({
             image={book.image}
             name={book.title}
             author={book.author}
+            isbn={book.isbn}
           />
         ))}
       </ScrollView>

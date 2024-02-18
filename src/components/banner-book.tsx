@@ -1,4 +1,6 @@
 import { MaterialIcons, Ionicons } from '@expo/vector-icons'
+import { useNavigation } from '@react-navigation/native'
+import { StackNavigationProp } from '@react-navigation/stack'
 import React from 'react'
 import { Text, TouchableOpacity, View, Image } from 'react-native'
 
@@ -6,11 +8,23 @@ type BannerBookProps = {
   image: string
   name: string
   author: string
+  isbn: string
 }
 
-const BannerBook = ({ image, author, name }: BannerBookProps) => {
+type RootStackParamList = {
+  book: { isbn: string } | undefined
+}
+
+const BannerBook = ({ image, author, name, isbn }: BannerBookProps) => {
+  const nav = useNavigation<StackNavigationProp<RootStackParamList>>()
   return (
-    <TouchableOpacity activeOpacity={0.7} className="gap-2">
+    <TouchableOpacity
+      activeOpacity={0.7}
+      className="gap-2"
+      onPress={() => {
+        nav.navigate('book', { isbn })
+      }}
+    >
       <Image
         className="h-[184px] w-[128px]"
         source={{

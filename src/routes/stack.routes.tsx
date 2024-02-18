@@ -1,8 +1,8 @@
-import { Home } from '../screens'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { Octicons, Entypo } from '@expo/vector-icons'
 import { ExploreRoutes } from '@/modules/Explorer/routes'
 import { LibraryRoutes } from '@/modules/Library/routes'
+import HomeStack from './home.stack.routes'
 
 const { Screen, Navigator } = createBottomTabNavigator()
 
@@ -31,7 +31,7 @@ export default function AppStack() {
     >
       <Screen
         name="Inicio"
-        component={Home}
+        component={HomeStack}
         options={{
           tabBarIcon: ({ color }) => (
             <Octicons name="home" size={24} color={color} />

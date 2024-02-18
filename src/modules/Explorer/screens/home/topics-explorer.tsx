@@ -3,7 +3,7 @@ import React from 'react'
 import { View, TouchableOpacity, Text } from 'react-native'
 import { StackNavigationProp } from '@react-navigation/stack'
 
-export type RootStackParamList = {
+type RootStackParamList = {
   category: { category: string } | undefined
 }
 
