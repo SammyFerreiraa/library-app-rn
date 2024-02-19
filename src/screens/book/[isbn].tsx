@@ -1,17 +1,24 @@
 import { useBook } from '@/hooks/useBook'
 import { useLocalSearchParams } from 'expo-router'
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native'
 import { Entypo, Feather, MaterialIcons } from '@expo/vector-icons'
 import { SectionBooks } from '@/components/section-books'
 
 const Book = () => {
-  const { isbn } = useLocalSearchParams()
+  const scrollViewRef = useRef<ScrollView>(null)
   const { books } = useBook()
+  const { isbn } = useLocalSearchParams()
   const book = books.find((book) => book.isbn === isbn)
+
+  useEffect(() => {
+    scrollViewRef.current?.scrollTo({ y: 0, animated: true })
+  }, [book?.isbn])
+
   return (
     <View className="flex-1 bg-black pb-[68px]">
       <ScrollView
+        ref={scrollViewRef}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: 32 }}
         className="flex-1 pt-5"
