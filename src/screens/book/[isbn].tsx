@@ -1,19 +1,92 @@
 import { useBook } from '@/hooks/useBook'
 import { useLocalSearchParams } from 'expo-router'
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native'
 import { Entypo, Feather, MaterialIcons } from '@expo/vector-icons'
 import { SectionBooks } from '@/components/section-books'
+import { useFavorites } from '@/modules/Library/hooks/useFavorites'
+import axios from 'axios'
+import { useAuth } from '@/hooks/useAuth'
 
 const Book = () => {
   const scrollViewRef = useRef<ScrollView>(null)
+  const { authData } = useAuth()
+  const [favorite, setFavorite] = useState<boolean | undefined>(undefined)
   const { books } = useBook()
+  const { Favorites, addFavorite, removeFavorite } = useFavorites()
   const { isbn } = useLocalSearchParams()
   const book = books.find((book) => book.isbn === isbn)
 
   useEffect(() => {
+    if (Favorites.some((book) => book.isbn === isbn)) setFavorite(true)
+    else setFavorite(false)
     scrollViewRef.current?.scrollTo({ y: 0, animated: true })
-  }, [book?.isbn])
+  }, [book?.isbn, Favorites, isbn])
+
+  const removeFav = () => {
+    const remove = async () => {
+      try {
+        if (!authData?.token) return
+        if (!book?.id) return
+        removeFavorite(book?.id)
+        setFavorite(false)
+        await axios.delete(`http://10.0.0.106:3000/favorites`, {
+          headers: {
+            Authorization: 'Bearer ' + authData?.token,
+          },
+          data: {
+            bookId: book.id,
+          },
+        })
+      } catch (error) {
+        console.log(error)
+        setFavorite(true)
+        addFavorite({
+          id: book?.id as string,
+          title: book?.title as string,
+          author: book?.author as string,
+          category: book?.category as string,
+          image: book?.image as string,
+          isbn: book?.isbn as string,
+        })
+      }
+    }
+    remove()
+  }
+
+  const addFav = () => {
+    const add = async () => {
+      try {
+        if (!authData?.token) return
+        if (!book?.id) return
+        addFavorite({
+          id: book?.id as string,
+          title: book?.title as string,
+          author: book?.author as string,
+          category: book?.category as string,
+          image: book?.image as string,
+          isbn: book?.isbn as string,
+        })
+        setFavorite(true)
+        await axios.post(
+          `http://10.0.0.106:3000/favorites`,
+          {
+            bookId: book?.id,
+          },
+          {
+            headers: {
+              Authorization: 'Bearer ' + authData?.token,
+            },
+          },
+        )
+      } catch (error) {
+        console.log(error)
+        removeFavorite(book?.id as string)
+        setFavorite(false)
+      }
+    }
+    add()
+  }
 
   return (
     <View className="flex-1 bg-black pb-[68px]">
@@ -50,9 +123,16 @@ const Book = () => {
         <View className="mx-4 mb-8">
           <View className="flex-row items-center justify-between">
             <Text className="text-3xl font-bold text-white">{book?.title}</Text>
-            <TouchableOpacity activeOpacity={0.7}>
-              <Entypo name="heart-outlined" size={28} color="white" />
-            </TouchableOpacity>
+            {favorite && (
+              <TouchableOpacity activeOpacity={0.7} onPress={removeFav}>
+                <Entypo name="heart" size={28} color="red" />
+              </TouchableOpacity>
+            )}
+            {!favorite && (
+              <TouchableOpacity activeOpacity={0.7} onPress={addFav}>
+                <Entypo name="heart-outlined" size={28} color="white" />
+              </TouchableOpacity>
+            )}
           </View>
           <Text className="text-sm text-neutral-500">{book?.author}</Text>
         </View>
