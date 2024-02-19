@@ -53,7 +53,7 @@ export default function Categories() {
                   />
                   <Text
                     className="text-left font-medium text-white"
-                    numberOfLines={1}
+                    numberOfLines={2}
                   >
                     {book.title}
                   </Text>
