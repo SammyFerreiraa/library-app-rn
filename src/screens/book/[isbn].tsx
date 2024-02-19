@@ -89,14 +89,14 @@ const Book = () => {
   }
 
   return (
-    <View className="flex-1 bg-black pb-[68px]">
+    <View className="flex-1 items-center bg-black pb-[68px]">
       <ScrollView
         ref={scrollViewRef}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: 32 }}
-        className="flex-1 pt-5"
+        className="w-[100%] flex-1 pt-5"
       >
-        <View className="relative mx-4 mb-8 items-center justify-center pt-24">
+        <View className="relative mx-4 mb-8 flex-1 items-center justify-center pt-24">
           <Image
             source={{ uri: book?.image }}
             alt={book?.title}
@@ -120,9 +120,11 @@ const Book = () => {
             </TouchableOpacity>
           </View>
         </View>
-        <View className="mx-4 mb-8">
-          <View className="flex-row items-center justify-between">
-            <Text className="text-3xl font-bold text-white">{book?.title}</Text>
+        <View className="mx-4 pb-8">
+          <View className="5flex-1 flex-row  items-center justify-between">
+            <Text className="flex-1 text-3xl font-bold text-white">
+              {book?.title}
+            </Text>
             {favorite && (
               <TouchableOpacity activeOpacity={0.7} onPress={removeFav}>
                 <Entypo name="heart" size={28} color="red" />
@@ -154,7 +156,7 @@ const Book = () => {
             <Text className="text-xl font-bold text-white">
               Sobre este livro
             </Text>
-            <Text className="text-base leading-5 text-white">
+            <Text className="flex-1 text-base leading-5 text-white">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste,
               nisi? Cumque consequuntur animi, in a blanditiis unde perferendis
               dicta dolore ratione deleniti, praesentium nemo dolor sint eveniet
@@ -233,7 +235,7 @@ const Book = () => {
           </View>
         </View>
         <View
-          className="mx-4 mb-9 flex-row overflow-hidden rounded-xl bg-gray-900 p-4"
+          className="mx-4 mb-9 flex-1 flex-row rounded-xl bg-gray-900 p-4"
           style={{ gap: 16 }}
         >
           <Image
@@ -241,11 +243,11 @@ const Book = () => {
             className="h-14 w-14 rounded-full"
             alt="perfil"
           />
-          <View className="flex-col" style={{ width: '83%' }}>
-            <Text className="text-base font-bold text-white">
+          <View className="flex-shrink flex-col">
+            <Text className="flex-1 text-base font-bold text-white">
               {book?.author}
             </Text>
-            <Text className="text-white">
+            <Text className="flex-1 text-white">
               Sua carreira envolve a elaboração de livros, artigos, críticas,
               resenhas, crônicas, entre diversos outros gêneros textuais.
             </Text>
