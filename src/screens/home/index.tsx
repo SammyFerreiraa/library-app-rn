@@ -10,11 +10,13 @@ import axios from 'axios'
 import { useBook } from '@/hooks/useBook'
 import { useCompletedRentals } from '@/modules/Library/hooks/useCompletedRentals'
 import { useRented } from '@/modules/Library/hooks/useRented'
+import { useFavorites } from '@/modules/Library/hooks/useFavorites'
 
 const Home = () => {
   const { setBooks, books } = useBook()
   const { setCompletedRentals } = useCompletedRentals()
   const { setRented } = useRented()
+  const { setFavorites } = useFavorites()
   const { authData } = useAuth()
   useEffect(() => {
     const getBooks = async () => {
@@ -49,6 +51,7 @@ const Home = () => {
         })
         .then((res) => {
           setRented(res.data.books)
+          setFavorites(res.data.favorites)
         })
     }
     getLibrary()
@@ -58,6 +61,7 @@ const Home = () => {
     setCompletedRentals,
     authData?.user.id,
     setRented,
+    setFavorites,
   ])
 
   return (

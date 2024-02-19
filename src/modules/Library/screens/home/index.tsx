@@ -3,11 +3,13 @@ import { View, ScrollView, Text, TouchableOpacity, Image } from 'react-native'
 import SectionSelect from './select-section-library'
 import { useCompletedRentals } from '../../hooks/useCompletedRentals'
 import { useRented } from '../../hooks/useRented'
+import { useFavorites } from '../../hooks/useFavorites'
 
 const Home = () => {
   const [section, setSection] = useState('Salvos')
   const { completedRentals } = useCompletedRentals()
   const { Rented } = useRented()
+  const { Favorites } = useFavorites()
 
   return (
     <View className="flex-1 bg-black pb-[68px]">
@@ -23,6 +25,36 @@ const Home = () => {
         </View>
         <SectionSelect section={section} setSection={setSection} />
         <View className="flex-row flex-wrap justify-evenly">
+          {section === 'Salvos' &&
+            Favorites.map((favorite) => (
+              <TouchableOpacity
+                key={favorite.id}
+                activeOpacity={0.7}
+                className="w-[40%]"
+              >
+                <View className="mb-10">
+                  <Image
+                    source={{ uri: favorite.image }}
+                    alt={favorite.title}
+                    resizeMode="cover"
+                    style={{
+                      width: '100%',
+                      height: 270,
+                      marginBottom: 16,
+                    }}
+                  />
+                  <Text
+                    className="text-left font-medium text-white"
+                    numberOfLines={1}
+                  >
+                    {favorite.title}
+                  </Text>
+                  <Text className="text-left text-gray-400" numberOfLines={1}>
+                    {favorite.author}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            ))}
           {section === 'Completos' &&
             completedRentals
               .filter((rental) => rental.returnedAt !== null)
