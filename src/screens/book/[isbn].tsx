@@ -165,7 +165,10 @@ const Book = () => {
           </View>
         </View>
         <SectionBooks
-          books={books.filter((books) => books.category === book?.category)}
+          books={books.filter(
+            (books) =>
+              books.category === book?.category && books.isbn !== book?.isbn,
+          )}
           title="Livros similares"
         />
       </ScrollView>
