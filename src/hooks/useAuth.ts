@@ -1,6 +1,9 @@
 import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { useRented } from '@/modules/Library/hooks/useRented'
+import { useFavorites } from '@/modules/Library/hooks/useFavorites'
+import { useCompletedRentals } from '@/modules/Library/hooks/useCompletedRentals'
 
 interface userData {
   user: {
@@ -30,6 +33,9 @@ export const useAuth = create(
       },
       signOut: async () => {
         set({ authData: undefined })
+        useRented.getState().setRented([])
+        useFavorites.getState().setFavorites([])
+        useCompletedRentals.getState().setCompletedRentals([])
       },
     }),
     {
