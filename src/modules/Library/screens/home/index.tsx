@@ -27,19 +27,36 @@ const Home = () => {
         <SectionSelect section={section} setSection={setSection} />
         <View className="flex-row flex-wrap justify-evenly">
           {section === 'Salvos' &&
+            Favorites.length > 0 &&
             Favorites.map((favorite) => (
               <BookSectionLibrary key={favorite.id} book={favorite} />
             ))}
+          {section === 'Salvos' && Favorites.length === 0 && (
+            <Text className="text-xl font-bold text-white">
+              Não há livros salvos
+            </Text>
+          )}
+          {section === 'Progresso' &&
+            Rented.map((rental) => (
+              <BookSectionLibrary key={rental.id} book={rental} />
+            ))}
+          {section === 'Progresso' && Rented.length === 0 && (
+            <Text className="text-xl font-bold text-white">
+              Nada em progresso atualmente
+            </Text>
+          )}
           {section === 'Completos' &&
+            completedRentals.length > 0 &&
             completedRentals
               .filter((rental) => rental.returnedAt !== null)
               .map((rental) => (
                 <BookSectionLibrary key={rental.id} book={rental.copy.book} />
               ))}
-          {section === 'Progresso' &&
-            Rented.map((rental) => (
-              <BookSectionLibrary key={rental.id} book={rental} />
-            ))}
+          {section === 'Completos' && completedRentals.length === 0 && (
+            <Text className="text-xl font-bold text-white">
+              Nenhum livro lido
+            </Text>
+          )}
         </View>
       </ScrollView>
     </View>
