@@ -19,7 +19,7 @@ const BannerBook = ({ image, author, name, isbn }: BannerBookProps) => {
   const nav = useNavigation<StackNavigationProp<RootStackParamList>>()
   return (
     <TouchableOpacity
-      activeOpacity={0.7}
+      activeOpacity={0.9}
       className="gap-2"
       onPress={() => {
         nav.navigate('book', { isbn })

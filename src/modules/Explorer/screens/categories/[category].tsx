@@ -3,10 +3,14 @@ import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native'
 import { AntDesign } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
 import { useBook } from '@/hooks/useBook'
+import { StackNavigationProp } from '@react-navigation/stack'
 
+type RootStackParamList = {
+  book: { isbn: string } | undefined
+}
 export default function Categories() {
+  const nav = useNavigation<StackNavigationProp<RootStackParamList>>()
   const { category } = useLocalSearchParams()
-  const nav = useNavigation()
 
   const { books } = useBook()
 
@@ -37,8 +41,9 @@ export default function Categories() {
             .map((book) => (
               <TouchableOpacity
                 key={book.id}
-                activeOpacity={0.7}
+                activeOpacity={0.9}
                 className="w-[45%]"
+                onPress={() => nav.navigate('book', { isbn: book.isbn })}
               >
                 <View className="mb-10">
                   <Image
