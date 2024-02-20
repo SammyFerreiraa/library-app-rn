@@ -7,11 +7,14 @@ import { SectionBooks } from '@/components/section-books'
 import { useFavorites } from '@/modules/Library/hooks/useFavorites'
 import axios from 'axios'
 import { useAuth } from '@/hooks/useAuth'
+import { useRented } from '@/modules/Library/hooks/useRented'
 
 const Book = () => {
   const scrollViewRef = useRef<ScrollView>(null)
   const { authData } = useAuth()
   const [favorite, setFavorite] = useState<boolean | undefined>(false)
+  const [rental, setRental] = useState<boolean | undefined>(false)
+  const { Rented, addRented } = useRented()
   const { books } = useBook()
   const { Favorites, addFavorite, removeFavorite } = useFavorites()
   const { isbn } = useLocalSearchParams()
@@ -19,8 +22,9 @@ const Book = () => {
 
   useEffect(() => {
     if (Favorites.some((book) => book.isbn === isbn)) setFavorite(true)
+    if (Rented.some((book) => book.copy.book.isbn === isbn)) setRental(true)
     scrollViewRef.current?.scrollTo({ y: 0, animated: true })
-  }, [book?.isbn, Favorites, isbn])
+  }, [book?.isbn, Favorites, isbn, Rented])
 
   const removeFav = () => {
     const remove = async () => {
@@ -85,6 +89,34 @@ const Book = () => {
     add()
   }
 
+  const rentalBook = () => {
+    if (!authData?.token) return
+    const rental = async () => {
+      try {
+        console.log(book?.id)
+        await axios
+          .post(
+            `http://10.0.0.106:3000/rentals`,
+            {
+              bookId: book?.id,
+            },
+            {
+              headers: {
+                Authorization: 'Bearer ' + authData?.token,
+              },
+            },
+          )
+          .then((res) => {
+            addRented(res.data.rental)
+            setRental(true)
+          })
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    rental()
+  }
+
   return (
     <View className="flex-1 items-center bg-black pb-[68px]">
       <ScrollView
@@ -100,13 +132,29 @@ const Book = () => {
             className="h-[220px] w-[153px]"
           />
           <View className="absolute -bottom-2 w-full flex-row justify-evenly rounded-md bg-slate-800 py-4">
-            <TouchableOpacity
-              className="flex-row items-center gap-3"
-              activeOpacity={0.7}
-            >
-              <Feather name="book" size={24} color="white" />
-              <Text className="text-base font-bold text-white">Read Nexus</Text>
-            </TouchableOpacity>
+            {rental && (
+              <TouchableOpacity
+                className="flex-row items-center gap-3"
+                activeOpacity={0.7}
+              >
+                <Feather name="book" size={24} color="white" />
+                <Text className="text-base font-bold text-white">
+                  Livro Alugado
+                </Text>
+              </TouchableOpacity>
+            )}
+            {!rental && (
+              <TouchableOpacity
+                className="flex-row items-center gap-3"
+                activeOpacity={0.7}
+                onPress={rentalBook}
+              >
+                <Feather name="book" size={24} color="white" />
+                <Text className="text-base font-bold text-white">
+                  Alugar Livro
+                </Text>
+              </TouchableOpacity>
+            )}
             <View className="h-6 w-[1px] bg-neutral-500"></View>
             <TouchableOpacity
               className="flex-row items-center gap-3"
