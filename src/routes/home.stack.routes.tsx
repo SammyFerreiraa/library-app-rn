@@ -7,7 +7,7 @@ export default function HomeStack() {
     <Navigator
       screenOptions={{
         headerShown: false,
-        animation: 'default',
+        animation: 'slide_from_right',
       }}
       initialRouteName="home"
     >

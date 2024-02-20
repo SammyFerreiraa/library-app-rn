@@ -11,7 +11,7 @@ import { useAuth } from '@/hooks/useAuth'
 const Book = () => {
   const scrollViewRef = useRef<ScrollView>(null)
   const { authData } = useAuth()
-  const [favorite, setFavorite] = useState<boolean | undefined>(undefined)
+  const [favorite, setFavorite] = useState<boolean | undefined>(false)
   const { books } = useBook()
   const { Favorites, addFavorite, removeFavorite } = useFavorites()
   const { isbn } = useLocalSearchParams()
@@ -19,7 +19,6 @@ const Book = () => {
 
   useEffect(() => {
     if (Favorites.some((book) => book.isbn === isbn)) setFavorite(true)
-    else setFavorite(false)
     scrollViewRef.current?.scrollTo({ y: 0, animated: true })
   }, [book?.isbn, Favorites, isbn])
 
