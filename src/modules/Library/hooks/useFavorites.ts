@@ -22,9 +22,9 @@ export const useFavorites = create(
     (set) => ({
       Favorites: [],
       setFavorites: (Favorites) => set({ Favorites }),
-      removeFavorite: (id) =>
+      removeFavorite: (isbn) =>
         set((state) => ({
-          Favorites: state.Favorites.filter((book) => book.id !== id),
+          Favorites: state.Favorites.filter((book) => book.isbn !== isbn),
         })),
       addFavorite: (favorite) =>
         set((state) => ({ Favorites: [...state.Favorites, favorite] })),

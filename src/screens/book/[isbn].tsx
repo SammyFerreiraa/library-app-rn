@@ -27,15 +27,14 @@ const Book = () => {
     const remove = async () => {
       try {
         if (!authData?.token) return
-        if (!book?.id) return
-        removeFavorite(book?.id)
+        removeFavorite(book?.isbn as string)
         setFavorite(false)
         await axios.delete(`http://10.0.0.106:3000/favorites`, {
           headers: {
             Authorization: 'Bearer ' + authData?.token,
           },
           data: {
-            bookId: book.id,
+            bookId: book?.id,
           },
         })
       } catch (error) {
@@ -58,7 +57,6 @@ const Book = () => {
     const add = async () => {
       try {
         if (!authData?.token) return
-        if (!book?.id) return
         addFavorite({
           id: book?.id as string,
           title: book?.title as string,
@@ -81,7 +79,7 @@ const Book = () => {
         )
       } catch (error) {
         console.log(error)
-        removeFavorite(book?.id as string)
+        removeFavorite(book?.isbn as string)
         setFavorite(false)
       }
     }
