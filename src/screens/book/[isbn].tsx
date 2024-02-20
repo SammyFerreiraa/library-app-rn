@@ -137,7 +137,7 @@ const Book = () => {
                 className="flex-row items-center gap-3"
                 activeOpacity={0.7}
               >
-                <Feather name="book" size={24} color="white" />
+                <Feather name="check-circle" size={24} color="white" />
                 <Text className="text-base font-bold text-white">
                   Livro Alugado
                 </Text>
@@ -161,7 +161,9 @@ const Book = () => {
               activeOpacity={0.7}
             >
               <Feather name="headphones" size={24} color="white" />
-              <Text className="text-base font-bold text-white">Play Nexus</Text>
+              <Text className="text-base font-bold text-white">
+                Escutar Livro
+              </Text>
             </TouchableOpacity>
           </View>
         </View>
