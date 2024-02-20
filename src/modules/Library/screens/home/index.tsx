@@ -38,7 +38,7 @@ const Home = () => {
           )}
           {section === 'Progresso' &&
             Rented.map((rental) => (
-              <BookSectionLibrary key={rental.id} book={rental} />
+              <BookSectionLibrary key={rental.id} book={rental.copy.book} />
             ))}
           {section === 'Progresso' && Rented.length === 0 && (
             <Text className="text-xl font-bold text-white">
