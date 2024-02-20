@@ -47,6 +47,7 @@ export type RentedProps = {
 interface useRentedProps {
   Rented: RentedProps[]
   setRented: (books: RentedProps[]) => void
+  addRented: (rental: RentedProps) => void
 }
 
 export const useRented = create(
@@ -54,6 +55,8 @@ export const useRented = create(
     (set) => ({
       Rented: [],
       setRented: (Rented) => set({ Rented }),
+      addRented: (rental) =>
+        set((state) => ({ Rented: [...state.Rented, rental] })),
     }),
     {
       name: 'rented',
