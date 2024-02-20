@@ -33,7 +33,7 @@ export const SectionBooks = ({
           gap: 12,
         }}
       >
-        {books.map((book) => (
+        {books.slice(0, 8).map((book) => (
           <BannerBook
             key={book.id}
             image={book.image}

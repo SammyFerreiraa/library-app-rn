@@ -12,7 +12,7 @@ export const Stories = () => {
       contentContainerStyle={{ paddingHorizontal: 16, gap: 8 }}
       showsHorizontalScrollIndicator={false}
     >
-      {shuffleArray(books.filter((book) => book)).map((book) => (
+      {shuffleArray(books.filter((book) => book).slice(0, 8)).map((book) => (
         <View
           className="h-20 w-20 items-center justify-center rounded-full border-2 border-white bg-black"
           key={book.id}
