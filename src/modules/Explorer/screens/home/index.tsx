@@ -1,4 +1,4 @@
-import { SectionBooks } from '@/components/section-books'
+import { SectionBooks } from '@/components'
 import { useBook } from '@/hooks/useBook'
 import { shuffleArray } from '@/utils/functions/shuffleArray'
 import React from 'react'

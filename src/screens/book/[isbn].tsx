@@ -11,7 +11,12 @@ import {
   ActivityIndicator,
 } from 'react-native'
 import { Entypo, Feather, MaterialIcons } from '@expo/vector-icons'
-import { SectionBooks } from '@/components/section-books'
+import {
+  AuthorProfile,
+  BadgeCategory,
+  BookDescription,
+  SectionBooks,
+} from '@/components'
 import { useFavorites } from '@/modules/Library/hooks/useFavorites'
 import axios from 'axios'
 import { useAuth } from '@/hooks/useAuth'
@@ -270,7 +275,7 @@ const Book = () => {
             </TouchableOpacity>
           </View>
         </View>
-        <View className="mx-4 pb-8">
+        <View className="mx-4 mb-9">
           <View className="5flex-1 flex-row  items-center justify-between">
             <Text className="flex-1 text-3xl font-bold text-white">
               {book?.title}
@@ -301,23 +306,9 @@ const Book = () => {
             </View>
           </View>
         </View>
-        <View className="mx-4 mb-9">
-          <View className="gap-3">
-            <Text className="text-xl font-bold text-white">
-              Sobre este livro
-            </Text>
-            <Text className="flex-1 text-base leading-5 text-white">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste,
-              nisi? Cumque consequuntur animi, in a blanditiis unde perferendis
-              dicta dolore ratione deleniti, praesentium nemo dolor sint eveniet
-              doloribus nostrum perspiciatis.
-            </Text>
-          </View>
-          <View className="flex-row gap-2 pt-5">
-            <View className="rounded-lg bg-[#313333] px-4 py-2">
-              <Text className="text-white">{book?.category}</Text>
-            </View>
-          </View>
+        <View className="mx-4 mb-9" style={{ gap: 20 }}>
+          <BookDescription />
+          <BadgeCategory category={book?.category as string} />
         </View>
         <View className="mb-7 px-4" style={{ gap: 20 }}>
           <Text className="text-2xl font-bold text-white">56 Capítulos</Text>
@@ -384,25 +375,7 @@ const Book = () => {
             </View>
           </View>
         </View>
-        <View
-          className="mx-4 mb-9 flex-1 flex-row rounded-xl bg-gray-900 p-4"
-          style={{ gap: 16 }}
-        >
-          <Image
-            source={require('../../utils/images/perfil.png')}
-            className="h-14 w-14 rounded-full"
-            alt="perfil"
-          />
-          <View className="flex-shrink flex-col">
-            <Text className="flex-1 text-base font-bold text-white">
-              {book?.author}
-            </Text>
-            <Text className="flex-1 text-white">
-              Sua carreira envolve a elaboração de livros, artigos, críticas,
-              resenhas, crônicas, entre diversos outros gêneros textuais.
-            </Text>
-          </View>
-        </View>
+        <AuthorProfile author={book?.author as string} />
         <SectionBooks
           books={books.filter(
             (books) =>
