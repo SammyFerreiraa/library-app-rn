@@ -1,7 +1,6 @@
 import { useBook } from '@/hooks/useBook'
-import { shuffleArray } from '@/utils/functions/shuffleArray'
 import React from 'react'
-import { ScrollView, View, Image } from 'react-native'
+import { ScrollView, Image, TouchableOpacity } from 'react-native'
 
 export const Stories = () => {
   const { books } = useBook()
@@ -12,20 +11,24 @@ export const Stories = () => {
       contentContainerStyle={{ paddingHorizontal: 16, gap: 8 }}
       showsHorizontalScrollIndicator={false}
     >
-      {shuffleArray(books.filter((book) => book).slice(0, 8)).map((book) => (
-        <View
-          className="h-20 w-20 items-center justify-center rounded-full border-2 border-white bg-black"
-          key={book.id}
-        >
-          <Image
-            className="h-16 w-16 rounded-full border-2 "
-            source={{
-              uri: book.image,
-            }}
-            alt={book.title}
-          />
-        </View>
-      ))}
+      {books
+        .filter((book) => book.recommended)
+        .slice(0, 8)
+        .map((book) => (
+          <TouchableOpacity
+            activeOpacity={0.7}
+            className="h-20 w-20 items-center justify-center rounded-full border-2 border-white bg-black"
+            key={book.id}
+          >
+            <Image
+              className="h-16 w-16 rounded-full border-2 "
+              source={{
+                uri: book.image,
+              }}
+              alt={book.title}
+            />
+          </TouchableOpacity>
+        ))}
     </ScrollView>
   )
 }

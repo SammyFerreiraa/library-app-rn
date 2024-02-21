@@ -30,7 +30,9 @@ const Home = () => {
             title="Ficção"
           />
           <SectionBooks
-            books={books.filter((book) => book.category === 'Mitologia')}
+            books={shuffleArray(
+              books.filter((book) => book.category === 'Mitologia'),
+            )}
             title="Mitologia"
           />
         </View>
