@@ -1,7 +1,15 @@
 import { useBook } from '@/hooks/useBook'
 import { useLocalSearchParams } from 'expo-router'
 import React, { useEffect, useRef, useState } from 'react'
-import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native'
+import {
+  Alert,
+  Image,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+  ActivityIndicator,
+} from 'react-native'
 import { Entypo, Feather, MaterialIcons } from '@expo/vector-icons'
 import { SectionBooks } from '@/components/section-books'
 import { useFavorites } from '@/modules/Library/hooks/useFavorites'
@@ -11,6 +19,7 @@ import { RentedProps, useRented } from '@/modules/Library/hooks/useRented'
 import { useCompletedRentals } from '@/modules/Library/hooks/useCompletedRentals'
 
 const Book = () => {
+  const [loading, setLoading] = useState(false)
   const scrollViewRef = useRef<ScrollView>(null)
   const { authData } = useAuth()
   const [favorite, setFavorite] = useState<boolean | undefined>(false)
@@ -98,8 +107,22 @@ const Book = () => {
   const returnBook = () => {
     if (!authData?.token) return
     if (!rentedBook) return
-    console.log(rentedBook)
+    console.log(rentedBook?.id)
+    Alert.alert(
+      'Devolver Livro',
+      'Deseja realmente devolver este livro?',
+      [
+        {
+          text: 'Cancelar',
+          onPress: () => setLoading(false),
+          style: 'cancel',
+        },
+        { text: 'Sim', onPress: () => ret() },
+      ],
+      { cancelable: false },
+    )
     const ret = async () => {
+      setLoading(true)
       try {
         await axios
           .delete(`http://10.0.0.106:3000/rentals/${rentedBook?.id}`, {
@@ -117,17 +140,32 @@ const Book = () => {
             })
             returnRented(rentedBook as RentedProps)
             setRental(false)
+            setLoading(false)
           })
       } catch (error) {
-        console.log(error)
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        console.log((error as any).response.data)
       }
     }
-    ret()
   }
 
   const rentalBook = () => {
     if (!authData?.token) return
+    Alert.alert(
+      'Alugar Livro',
+      'Deseja realmente alugar este livro?',
+      [
+        {
+          text: 'Cancelar',
+          onPress: () => setLoading(false),
+          style: 'cancel',
+        },
+        { text: 'Sim', onPress: () => rental() },
+      ],
+      { cancelable: false },
+    )
     const rental = async () => {
+      setLoading(true)
       try {
         await axios
           .post(
@@ -144,12 +182,19 @@ const Book = () => {
           .then((res) => {
             addRented(res.data.rental)
             setRental(true)
+            setLoading(false)
           })
       } catch (error) {
         console.log(error)
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        if ((error as any).response?.status === 433) {
+          Alert.alert(
+            'Livro Indisponível',
+            'Desculpe, mas não há copias desse livro disponível atualmente.',
+          )
+        }
       }
     }
-    rental()
   }
 
   return (
@@ -166,34 +211,56 @@ const Book = () => {
             alt={book?.title}
             className="h-[220px] w-[153px]"
           />
-          <View className="absolute -bottom-2 w-full flex-row justify-evenly rounded-md bg-slate-800 py-4">
+          <View className="absolute -bottom-2 w-full flex-row justify-between rounded-md bg-slate-800 py-4">
             {rental && (
               <TouchableOpacity
-                className="flex-row items-center gap-3"
+                className="flex-1 flex-row items-center justify-center gap-3"
                 activeOpacity={0.7}
                 onPress={returnBook}
               >
-                <Feather name="check-circle" size={24} color="white" />
-                <Text className="text-base font-bold text-white">
-                  Livro Alugado
-                </Text>
+                {loading && (
+                  <ActivityIndicator
+                    className="flex-1"
+                    size="small"
+                    color="white"
+                  />
+                )}
+                {!loading && (
+                  <View className="flex-row items-center" style={{ gap: 12 }}>
+                    <Feather name="check-circle" size={24} color="white" />
+                    <Text className="text-base font-bold text-white">
+                      Livro Alugado
+                    </Text>
+                  </View>
+                )}
               </TouchableOpacity>
             )}
             {!rental && (
               <TouchableOpacity
-                className="flex-row items-center gap-3"
+                className="flex-1 flex-row items-center justify-center gap-3"
                 activeOpacity={0.7}
                 onPress={rentalBook}
               >
-                <Feather name="book" size={24} color="white" />
-                <Text className="text-base font-bold text-white">
-                  Alugar Livro
-                </Text>
+                {loading && (
+                  <ActivityIndicator
+                    className="flex-1"
+                    size="small"
+                    color="white"
+                  />
+                )}
+                {!loading && (
+                  <View className="flex-row" style={{ gap: 12 }}>
+                    <Feather name="book" size={24} color="white" />
+                    <Text className="text-base font-bold text-white">
+                      Alugar Livro
+                    </Text>
+                  </View>
+                )}
               </TouchableOpacity>
             )}
             <View className="h-6 w-[1px] bg-neutral-500"></View>
             <TouchableOpacity
-              className="flex-row items-center gap-3"
+              className="flex-1 flex-row items-center justify-center gap-3"
               activeOpacity={0.7}
             >
               <Feather name="headphones" size={24} color="white" />
