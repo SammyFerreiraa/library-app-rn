@@ -27,7 +27,6 @@ const Home = () => {
           },
         })
         .then((res) => {
-          console.log(1)
           setBooks(res.data)
         })
     }

@@ -93,7 +93,6 @@ const Book = () => {
     if (!authData?.token) return
     const rental = async () => {
       try {
-        console.log(book?.id)
         await axios
           .post(
             `http://10.0.0.106:3000/rentals`,
