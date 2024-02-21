@@ -41,9 +41,29 @@ export default function BookSectionLibrary({ book }: BookSectionLibraryProps) {
         <Text className="text-left font-medium text-white" numberOfLines={1}>
           {book.title}
         </Text>
-        <Text className="text-left text-gray-400" numberOfLines={1}>
+        <Text className="mb-1 text-left text-gray-400" numberOfLines={1}>
           {book.author}
         </Text>
+        {book.rentedAt && (
+          <>
+            <Text className="text-left text-gray-400" numberOfLines={1}>
+              Alugado: {new Date(book.rentedAt).toLocaleDateString('pt-BR')}{' '}
+            </Text>
+            <Text className="mb-1 text-left text-gray-400" numberOfLines={1}>
+              Horário: {new Date(book.rentedAt).toLocaleTimeString('pt-BR')}
+            </Text>
+          </>
+        )}
+        {book.returnedAt && (
+          <>
+            <Text className="text-left text-gray-400" numberOfLines={1}>
+              Devolvido: {new Date(book.returnedAt).toLocaleDateString('pt-BR')}{' '}
+            </Text>
+            <Text className="text-left text-gray-400" numberOfLines={1}>
+              Horário: {new Date(book.returnedAt).toLocaleTimeString('pt-BR')}
+            </Text>
+          </>
+        )}
       </View>
     </TouchableOpacity>
   )

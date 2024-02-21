@@ -50,7 +50,14 @@ const Home = () => {
             completedRentals
               .filter((rental) => rental.returnedAt !== null)
               .map((rental) => (
-                <BookSectionLibrary key={rental.id} book={rental.copy.book} />
+                <BookSectionLibrary
+                  key={rental.id}
+                  book={{
+                    ...rental.copy.book,
+                    rentedAt: rental.rentedAt,
+                    returnedAt: rental.returnedAt,
+                  }}
+                />
               ))}
           {section === 'Completos' && completedRentals.length === 0 && (
             <Text className="text-xl font-bold text-white">
