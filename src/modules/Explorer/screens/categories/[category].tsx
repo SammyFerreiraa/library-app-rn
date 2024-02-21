@@ -35,14 +35,14 @@ export default function Categories() {
           </Text>
         </View>
 
-        <View className="flex-row flex-wrap justify-evenly">
+        <View className="flex-row flex-wrap justify-start" style={{ gap: 28 }}>
           {books
             .filter((book) => book.category === category)
             .map((book) => (
               <TouchableOpacity
                 key={book.id}
                 activeOpacity={0.9}
-                className="w-[45%]"
+                className="w-[46.2%]"
                 onPress={() => nav.navigate('book', { isbn: book.isbn })}
               >
                 <View className="mb-10">

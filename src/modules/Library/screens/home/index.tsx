@@ -25,7 +25,10 @@ const Home = () => {
           </Text>
         </View>
         <SectionSelect section={section} setSection={setSection} />
-        <View className="flex-row flex-wrap justify-evenly">
+        <View
+          className="flex-1 flex-row flex-wrap justify-start px-4"
+          style={{ gap: 28 }}
+        >
           {section === 'Salvos' &&
             Favorites.length > 0 &&
             Favorites.map((favorite) => (
