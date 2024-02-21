@@ -1,6 +1,7 @@
+import { Story } from '@/components'
 import { useBook } from '@/hooks/useBook'
+import { ScrollView } from 'react-native'
 import React from 'react'
-import { ScrollView, Image, TouchableOpacity } from 'react-native'
 
 export const Stories = () => {
   const { books } = useBook()
@@ -15,19 +16,12 @@ export const Stories = () => {
         .filter((book) => book.recommended)
         .slice(0, 8)
         .map((book) => (
-          <TouchableOpacity
-            activeOpacity={0.7}
-            className="h-20 w-20 items-center justify-center rounded-full border-2 border-white bg-black"
+          <Story
             key={book.id}
-          >
-            <Image
-              className="h-16 w-16 rounded-full border-2 "
-              source={{
-                uri: book.image,
-              }}
-              alt={book.title}
-            />
-          </TouchableOpacity>
+            id={book.id}
+            image={book.image}
+            title={book.title}
+          />
         ))}
     </ScrollView>
   )

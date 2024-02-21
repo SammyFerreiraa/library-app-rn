@@ -3,7 +3,7 @@ import { ScrollView, View } from 'react-native'
 import { Stories } from './stories-book-home'
 import { SectionView } from './section-view-home'
 import { Banner } from './banner-home'
-import { SectionBooks } from '../../components/section-books'
+import { SectionBooks } from '@/components'
 import { Header } from './header-home'
 import { useAuth } from '@/hooks/useAuth'
 import axios from 'axios'
@@ -18,6 +18,7 @@ const Home = () => {
   const { setRented } = useRented()
   const { setFavorites } = useFavorites()
   const { authData } = useAuth()
+
   useEffect(() => {
     const getBooks = async () => {
       await axios

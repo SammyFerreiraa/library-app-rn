@@ -4,7 +4,7 @@ import { AntDesign } from '@expo/vector-icons'
 import React from 'react'
 import { View, TouchableOpacity, ScrollView, Text } from 'react-native'
 
-export const SectionBooks = ({
+const SectionBooks = ({
   books,
   title,
 }: {
@@ -46,3 +46,5 @@ export const SectionBooks = ({
     </View>
   )
 }
+
+export default SectionBooks
