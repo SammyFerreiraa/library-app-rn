@@ -48,6 +48,7 @@ interface useRentedProps {
   Rented: RentedProps[]
   setRented: (books: RentedProps[]) => void
   addRented: (rental: RentedProps) => void
+  returnRented: (rental: RentedProps) => void
 }
 
 export const useRented = create(
@@ -57,6 +58,11 @@ export const useRented = create(
       setRented: (Rented) => set({ Rented }),
       addRented: (rental) =>
         set((state) => ({ Rented: [...state.Rented, rental] })),
+      returnRented: (rental) => {
+        set((state) => ({
+          Rented: state.Rented.filter((book) => book.id !== rental.id),
+        }))
+      },
     }),
     {
       name: 'rented',

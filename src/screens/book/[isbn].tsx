@@ -7,18 +7,24 @@ import { SectionBooks } from '@/components/section-books'
 import { useFavorites } from '@/modules/Library/hooks/useFavorites'
 import axios from 'axios'
 import { useAuth } from '@/hooks/useAuth'
-import { useRented } from '@/modules/Library/hooks/useRented'
+import { RentedProps, useRented } from '@/modules/Library/hooks/useRented'
+import { useCompletedRentals } from '@/modules/Library/hooks/useCompletedRentals'
 
 const Book = () => {
   const scrollViewRef = useRef<ScrollView>(null)
   const { authData } = useAuth()
   const [favorite, setFavorite] = useState<boolean | undefined>(false)
   const [rental, setRental] = useState<boolean | undefined>(false)
-  const { Rented, addRented } = useRented()
+
+  const { Rented, addRented, returnRented } = useRented()
   const { books } = useBook()
   const { Favorites, addFavorite, removeFavorite } = useFavorites()
+  const { addCompletedRental } = useCompletedRentals()
+
   const { isbn } = useLocalSearchParams()
+
   const book = books.find((book) => book.isbn === isbn)
+  const rentedBook = Rented.find((book) => book.copy.book.isbn === isbn)
 
   useEffect(() => {
     if (Favorites.some((book) => book.isbn === isbn)) setFavorite(true)
@@ -89,6 +95,36 @@ const Book = () => {
     add()
   }
 
+  const returnBook = () => {
+    if (!authData?.token) return
+    if (!rentedBook) return
+    console.log(rentedBook)
+    const ret = async () => {
+      try {
+        await axios
+          .delete(`http://10.0.0.106:3000/rentals/${rentedBook?.id}`, {
+            headers: {
+              Authorization: 'Bearer ' + authData?.token,
+            },
+          })
+          .then(() => {
+            addCompletedRental({
+              copy: rentedBook?.rental.copy,
+              id: rentedBook?.rental.id,
+              delay: 0,
+              returnedAt: new Date().toString(),
+              rentedAt: rentedBook?.rental.rentedAt as string,
+            })
+            returnRented(rentedBook as RentedProps)
+            setRental(false)
+          })
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    ret()
+  }
+
   const rentalBook = () => {
     if (!authData?.token) return
     const rental = async () => {
@@ -135,6 +171,7 @@ const Book = () => {
               <TouchableOpacity
                 className="flex-row items-center gap-3"
                 activeOpacity={0.7}
+                onPress={returnBook}
               >
                 <Feather name="check-circle" size={24} color="white" />
                 <Text className="text-base font-bold text-white">

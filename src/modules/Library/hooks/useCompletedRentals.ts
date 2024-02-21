@@ -25,6 +25,7 @@ export type CompletedRentalProps = {
 interface useLibraryProps {
   completedRentals: CompletedRentalProps[]
   setCompletedRentals: (books: CompletedRentalProps[]) => void
+  addCompletedRental: (rental: CompletedRentalProps) => void
 }
 
 export const useCompletedRentals = create(
@@ -32,6 +33,10 @@ export const useCompletedRentals = create(
     (set) => ({
       completedRentals: [],
       setCompletedRentals: (completedRentals) => set({ completedRentals }),
+      addCompletedRental: (rental) =>
+        set((state) => ({
+          completedRentals: [...state.completedRentals, rental],
+        })),
     }),
     {
       name: 'completed-rentals',
