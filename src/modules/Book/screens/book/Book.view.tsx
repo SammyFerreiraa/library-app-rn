@@ -17,14 +17,13 @@ const BookView = ({
   books,
 }: ReturnType<typeof useBookModel>) => {
   return (
-    <ScreenView scrollViewRef={scrollViewRef}>
+    <ScreenView scrollViewRef={scrollViewRef} className="w-full">
       <StatusRental />
       <Infos />
       <InfosTime />
       <Description />
       <Chapter />
       <AuthorProfile />
-      <StatusRental />
       <SectionBooks
         books={books.filter(
           (books) =>

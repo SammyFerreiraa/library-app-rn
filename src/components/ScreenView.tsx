@@ -1,19 +1,20 @@
 import React from 'react'
-import { ScrollView, View } from 'react-native'
+import { ScrollView, ScrollViewProps, View } from 'react-native'
 
-type ScreenViewProps = {
+type ScreenViewProps = ScrollViewProps & {
   children: React.ReactNode
   scrollViewRef?: React.RefObject<ScrollView>
 }
 
-const ScreenView = ({ children, scrollViewRef }: ScreenViewProps) => {
+const ScreenView = ({ children, scrollViewRef, ...rest }: ScreenViewProps) => {
   return (
     <View className="flex-1 items-center bg-black pb-[68px]">
       <ScrollView
+        {...rest}
         ref={scrollViewRef || undefined}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: 32 }}
-        className="w-[100%] flex-1 pt-5"
+        className="flex-1 pt-5"
       >
         {children}
       </ScrollView>
