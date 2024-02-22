@@ -1,7 +1,9 @@
+import { useNavigation } from '@react-navigation/native'
 import React from 'react'
 import { View, TouchableOpacity, Image, Text } from 'react-native'
 
 export const Header = () => {
+  const nav = useNavigation()
   return (
     <View className="mb-6 w-full flex-row items-center justify-between px-4">
       <View className="flex-col gap-1">
@@ -12,7 +14,12 @@ export const Header = () => {
           className="h-1 w-[60px]"
         />
       </View>
-      <TouchableOpacity activeOpacity={0.7}>
+      <TouchableOpacity
+        activeOpacity={0.7}
+        onPress={() => {
+          nav.navigate('menu' as never)
+        }}
+      >
         <Image
           alt="profile"
           source={require('../../../utils/images/perfil.png')}

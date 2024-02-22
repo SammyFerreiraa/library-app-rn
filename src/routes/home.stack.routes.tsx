@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { Home } from '../screens'
+import { Home, Menu } from '../screens'
 import { BookRoutes } from '@/modules/Book/routes'
 const { Navigator, Screen } = createNativeStackNavigator()
 
@@ -14,6 +14,7 @@ export default function HomeStack() {
     >
       <Screen name="home" component={Home} />
       <Screen name="book" component={BookRoutes} />
+      <Screen name="menu" component={Menu} />
     </Navigator>
   )
 }
