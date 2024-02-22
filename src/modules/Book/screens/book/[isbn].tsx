@@ -1,27 +1,17 @@
 import { useBook } from '@/hooks/useBook'
 import { useLocalSearchParams } from 'expo-router'
 import React, { useEffect, useRef, useState } from 'react'
-import {
-  Alert,
-  Image,
-  ScrollView,
-  Text,
-  TouchableOpacity,
-  View,
-  ActivityIndicator,
-} from 'react-native'
+import { Alert, ScrollView, Text, TouchableOpacity, View } from 'react-native'
 import { Entypo, Feather, MaterialIcons } from '@expo/vector-icons'
-import {
-  AuthorProfile,
-  BadgeCategory,
-  BookDescription,
-  SectionBooks,
-} from '@/components'
+import { BadgeCategory, SectionBooks } from '@/components'
 import { useFavorites } from '@/modules/Library/hooks/useFavorites'
 import axios from 'axios'
 import { useAuth } from '@/hooks/useAuth'
 import { RentedProps, useRented } from '@/modules/Library/hooks/useRented'
 import { useCompletedRentals } from '@/modules/Library/hooks/useCompletedRentals'
+import AuthorProfile from './author-profile'
+import BookDescription from './book-description'
+import BookStatus from './book-status'
 
 const Book = () => {
   const [loading, setLoading] = useState(false)
@@ -41,6 +31,7 @@ const Book = () => {
   const rentedBook = Rented.find((book) => book.copy.book.isbn === isbn)
 
   useEffect(() => {
+    console.log('book', isbn)
     if (Favorites.some((book) => book.isbn === isbn)) setFavorite(true)
     if (Rented.some((book) => book.copy.book.isbn === isbn)) setRental(true)
     scrollViewRef.current?.scrollTo({ y: 0, animated: true })
@@ -210,71 +201,14 @@ const Book = () => {
         contentContainerStyle={{ paddingBottom: 32 }}
         className="w-[100%] flex-1 pt-5"
       >
-        <View className="relative mx-4 mb-8 flex-1 items-center justify-center pt-24">
-          <Image
-            source={{ uri: book?.image }}
-            alt={book?.title}
-            className="h-[220px] w-[153px]"
-          />
-          <View className="absolute -bottom-2 w-full flex-row justify-between rounded-md bg-slate-800 py-4">
-            {rental && (
-              <TouchableOpacity
-                className="flex-1 flex-row items-center justify-center gap-3"
-                activeOpacity={0.7}
-                onPress={returnBook}
-              >
-                {loading && (
-                  <ActivityIndicator
-                    className="flex-1"
-                    size="small"
-                    color="white"
-                  />
-                )}
-                {!loading && (
-                  <View className="flex-row items-center" style={{ gap: 12 }}>
-                    <Feather name="check-circle" size={24} color="white" />
-                    <Text className="text-base font-bold text-white">
-                      Livro Alugado
-                    </Text>
-                  </View>
-                )}
-              </TouchableOpacity>
-            )}
-            {!rental && (
-              <TouchableOpacity
-                className="flex-1 flex-row items-center justify-center gap-3"
-                activeOpacity={0.7}
-                onPress={rentalBook}
-              >
-                {loading && (
-                  <ActivityIndicator
-                    className="flex-1"
-                    size="small"
-                    color="white"
-                  />
-                )}
-                {!loading && (
-                  <View className="flex-row" style={{ gap: 12 }}>
-                    <Feather name="book" size={24} color="white" />
-                    <Text className="text-base font-bold text-white">
-                      Alugar Livro
-                    </Text>
-                  </View>
-                )}
-              </TouchableOpacity>
-            )}
-            <View className="h-6 w-[1px] bg-neutral-500"></View>
-            <TouchableOpacity
-              className="flex-1 flex-row items-center justify-center gap-3"
-              activeOpacity={0.7}
-            >
-              <Feather name="headphones" size={24} color="white" />
-              <Text className="text-base font-bold text-white">
-                Escutar Livro
-              </Text>
-            </TouchableOpacity>
-          </View>
-        </View>
+        <BookStatus
+          rental={rental as boolean}
+          image={book?.image as string}
+          rentalBook={rentalBook}
+          returnBook={returnBook}
+          loading={loading}
+          title={book?.title as string}
+        />
         <View className="mx-4 mb-9">
           <View className="5flex-1 flex-row  items-center justify-between">
             <Text className="flex-1 text-3xl font-bold text-white">

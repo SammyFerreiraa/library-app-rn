@@ -100,6 +100,9 @@ const TopicsExplorer = () => {
           <TouchableOpacity
             activeOpacity={0.6}
             className="rounded-lg bg-[#313333] px-4  py-2"
+            onPress={() => {
+              nav.navigate('category', { category: 'Mangás' })
+            }}
           >
             <Text className="text-white">Mangás</Text>
           </TouchableOpacity>

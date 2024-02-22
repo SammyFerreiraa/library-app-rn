@@ -6,7 +6,7 @@ import { useRented } from '../../hooks/useRented'
 import { useFavorites } from '../../hooks/useFavorites'
 import { BookSectionLibrary } from '../../components'
 
-const Home = () => {
+export const Home = () => {
   const [section, setSection] = useState('Salvos')
   const { completedRentals } = useCompletedRentals()
   const { Rented } = useRented()
@@ -72,5 +72,3 @@ const Home = () => {
     </View>
   )
 }
-
-export default Home

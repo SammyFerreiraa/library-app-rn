@@ -12,7 +12,7 @@ const AuthorProfile = ({ author }: AuthorProfileProps) => {
       style={{ gap: 16 }}
     >
       <Image
-        source={require('../utils/images/perfil.png')}
+        source={require('../../../../utils/images/perfil.png')}
         className="h-14 w-14 rounded-full"
         alt="perfil"
       />
