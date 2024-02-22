@@ -1,13 +1,17 @@
 import React, { useEffect } from 'react'
-import { ScrollView, View } from 'react-native'
-import { Stories } from './stories-book-home'
-import { SectionView } from './section-view-home'
-import { Banner } from './banner-home'
-import { SectionBooks } from '@/components'
-import { Header } from './header-home'
-import { useAuth } from '@/hooks/useAuth'
 import axios from 'axios'
+
+import { Stories } from './Stories'
+import { SectionView } from './SectionsView'
+import { Banner } from './Banner'
+import { Header } from './Header'
+
+import { ScrollView, View } from 'react-native'
+
+import { SectionBooks } from '@/components'
+import { useAuth } from '@/hooks/useAuth'
 import { useBook } from '@/hooks/useBook'
+
 import { useCompletedRentals } from '@/modules/Library/hooks/useCompletedRentals'
 import { useRented } from '@/modules/Library/hooks/useRented'
 import { useFavorites } from '@/modules/Library/hooks/useFavorites'

@@ -8,14 +8,14 @@ export const Header = () => {
         <Text className="text-2xl font-bold text-white">Good Afternoon</Text>
         <Image
           alt="vector"
-          source={require('../../utils/images/vector.png')}
+          source={require('../../../utils/images/vector.png')}
           className="h-1 w-[60px]"
         />
       </View>
       <TouchableOpacity activeOpacity={0.7}>
         <Image
           alt="profile"
-          source={require('../../utils/images/perfil.png')}
+          source={require('../../../utils/images/perfil.png')}
           className="h-12 w-12 rounded-full"
         />
       </TouchableOpacity>
