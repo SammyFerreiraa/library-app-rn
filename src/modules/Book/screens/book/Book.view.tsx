@@ -18,6 +18,7 @@ const BookView = ({
 }: ReturnType<typeof useBookModel>) => {
   return (
     <ScreenView scrollViewRef={scrollViewRef}>
+      <StatusRental />
       <Infos />
       <InfosTime />
       <Description />
