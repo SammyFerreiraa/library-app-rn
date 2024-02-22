@@ -4,27 +4,19 @@ import {
   View,
   TouchableOpacity,
   ActivityIndicator,
-  Image,
   Text,
+  Image,
 } from 'react-native'
+import useStatusRentalModel from './StatusRental.model'
 
-type BookStatusProps = {
-  title: string
-  image: string
-  rental: boolean
-  loading: boolean
-  returnBook: () => void
-  rentalBook: () => void
-}
-
-const BookStatus = ({
+const StatusRentalView = ({
+  loading,
+  rental,
   title,
   image,
-  rental,
-  loading,
   returnBook,
   rentalBook,
-}: BookStatusProps) => {
+}: ReturnType<typeof useStatusRentalModel>) => {
   return (
     <View className="relative mx-4 mb-8 flex-1 items-center justify-center pt-24">
       <Image
@@ -92,4 +84,4 @@ const BookStatus = ({
   )
 }
 
-export default BookStatus
+export default StatusRentalView

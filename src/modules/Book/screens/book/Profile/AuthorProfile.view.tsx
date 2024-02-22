@@ -1,18 +1,15 @@
 import React from 'react'
-import { View, Text, Image } from 'react-native'
+import { View, Image, Text } from 'react-native'
+import useProfileModel from './AuthorProfile.model'
 
-type AuthorProfileProps = {
-  author: string
-}
-
-const AuthorProfile = ({ author }: AuthorProfileProps) => {
+const AuthorProfileView = ({ author }: ReturnType<typeof useProfileModel>) => {
   return (
     <View
       className="mx-4 mb-9 flex-1 flex-row rounded-xl bg-gray-900 p-4"
       style={{ gap: 16 }}
     >
       <Image
-        source={require('../../../../utils/images/perfil.png')}
+        source={require('../../../../../utils/images/perfil.png')}
         className="h-14 w-14 rounded-full"
         alt="perfil"
       />
@@ -27,4 +24,4 @@ const AuthorProfile = ({ author }: AuthorProfileProps) => {
   )
 }
 
-export default AuthorProfile
+export default AuthorProfileView
