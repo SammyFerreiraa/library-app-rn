@@ -1,14 +1,12 @@
 import { AntDesign, Feather } from '@expo/vector-icons'
-import React, { Dispatch } from 'react'
+import React from 'react'
 import { View, TextInput } from 'react-native'
+import useSearchModel from './Search.model'
 
-const SearchExplorer = ({
+const SearchView = ({
   search,
   setSearch,
-}: {
-  search: string
-  setSearch: Dispatch<React.SetStateAction<string>>
-}) => {
+}: ReturnType<typeof useSearchModel>) => {
   return (
     <View className="mx-4 mb-11 items-center" style={{ position: 'relative' }}>
       <AntDesign
@@ -38,4 +36,4 @@ const SearchExplorer = ({
   )
 }
 
-export default SearchExplorer
+export default SearchView
