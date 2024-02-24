@@ -1,15 +1,14 @@
 import React from 'react'
-import { ScreenView, SectionBooks } from '@/components'
-import { shuffleArray } from '@/utils/functions/shuffleArray'
-import { View } from 'react-native'
+import { ScreenView } from '@/components'
 
-import TopicsExplorer from './Topics/topics-explorer'
 import useHomeModel from './Home.model'
 import Header from './Header'
 import Search from './Search'
 import SearchResults from './SearchResults'
+import TopicsExplorer from './TopicsExplorer'
+import Sections from './Sections'
 
-const HomeView = ({ search, books }: ReturnType<typeof useHomeModel>) => {
+const HomeView = ({ search }: ReturnType<typeof useHomeModel>) => {
   return (
     <ScreenView className="w-full">
       <Header />
@@ -17,20 +16,7 @@ const HomeView = ({ search, books }: ReturnType<typeof useHomeModel>) => {
       {search === '' && (
         <>
           <TopicsExplorer />
-          <View className="flex-col" style={{ gap: 32 }}>
-            <SectionBooks
-              books={shuffleArray(
-                books.filter((book) => book.category === 'Ficção'),
-              )}
-              title="Ficção"
-            />
-            <SectionBooks
-              books={shuffleArray(
-                books.filter((book) => book.category === 'Mitologia'),
-              )}
-              title="Mitologia"
-            />
-          </View>
+          <Sections />
         </>
       )}
       <SearchResults />

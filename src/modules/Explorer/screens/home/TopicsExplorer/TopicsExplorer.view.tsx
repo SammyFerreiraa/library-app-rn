@@ -1,14 +1,10 @@
-import { useNavigation } from '@react-navigation/native'
 import React from 'react'
 import { View, TouchableOpacity, Text } from 'react-native'
-import { StackNavigationProp } from '@react-navigation/stack'
+import useTopicsExplorerModel from './TopicsExplorer.model'
 
-type RootStackParamList = {
-  category: { category: string } | undefined
-}
-
-const TopicsExplorer = () => {
-  const nav = useNavigation<StackNavigationProp<RootStackParamList>>()
+const TopicsExplorerView = ({
+  nav,
+}: ReturnType<typeof useTopicsExplorerModel>) => {
   return (
     <View className="mx-4 mb-10 items-start">
       <Text className="pb-4 text-2xl font-bold text-white">Tópicos</Text>
@@ -118,4 +114,4 @@ const TopicsExplorer = () => {
   )
 }
 
-export default TopicsExplorer
+export default TopicsExplorerView
