@@ -42,7 +42,7 @@ export const useStatusRentalModel = () => {
       setLoading(true)
       try {
         await axios
-          .delete(`http://10.0.0.106:3000/rentals/${rentedBook?.id}`, {
+          .delete(`http://172.25.253.89:3000/rentals/${rentedBook?.id}`, {
             headers: {
               Authorization: 'Bearer ' + authData?.token,
             },
@@ -86,7 +86,7 @@ export const useStatusRentalModel = () => {
       try {
         await axios
           .post(
-            `http://10.0.0.106:3000/rentals`,
+            `http://172.25.253.89:3000/rentals`,
             {
               bookId: book?.id,
             },

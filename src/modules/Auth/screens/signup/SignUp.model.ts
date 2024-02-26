@@ -15,7 +15,7 @@ const useSignUpModel = () => {
     const signup = async (): Promise<boolean | undefined> => {
       try {
         await axios
-          .post('http://10.0.0.106:3000/register', {
+          .post('http://172.25.253.89:3000/register', {
             name,
             email,
             password,
@@ -35,7 +35,7 @@ const useSignUpModel = () => {
       const login = async () => {
         try {
           await axios
-            .post('http://10.0.0.106:3000/login', {
+            .post('http://172.25.253.89:3000/login', {
               email,
               password,
             })

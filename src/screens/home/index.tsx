@@ -26,7 +26,7 @@ const Home = () => {
   useEffect(() => {
     const getBooks = async () => {
       await axios
-        .get('http://10.0.0.106:3000/books', {
+        .get('http://172.25.253.89:3000/books', {
           headers: {
             Authorization: 'Bearer ' + authData?.token,
           },
@@ -38,7 +38,7 @@ const Home = () => {
     getBooks()
     const getLibrary = async () => {
       await axios
-        .get(`http://10.0.0.106:3000/rentals/${authData?.user.id}`, {
+        .get(`http://172.25.253.89:3000/rentals/${authData?.user.id}`, {
           headers: {
             Authorization: 'Bearer ' + authData?.token,
           },
@@ -48,7 +48,7 @@ const Home = () => {
         })
 
       await axios
-        .get(`http://10.0.0.106:3000/users`, {
+        .get(`http://172.25.253.89:3000/users`, {
           headers: {
             Authorization: 'Bearer ' + authData?.token,
           },

@@ -27,7 +27,7 @@ const useStatusFavoriteModel = () => {
         })
         setFavorite(true)
         await axios.post(
-          `http://10.0.0.106:3000/favorites`,
+          `http://172.25.253.89:3000/favorites`,
           {
             bookId: book?.id,
           },
@@ -52,7 +52,7 @@ const useStatusFavoriteModel = () => {
         if (!authData?.token) return
         removeFavorite(book?.isbn as string)
         setFavorite(false)
-        await axios.delete(`http://10.0.0.106:3000/favorites`, {
+        await axios.delete(`http://172.25.253.89:3000/favorites`, {
           headers: {
             Authorization: 'Bearer ' + authData?.token,
           },

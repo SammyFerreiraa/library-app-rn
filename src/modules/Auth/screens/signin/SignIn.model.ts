@@ -12,7 +12,7 @@ const useSignInModel = () => {
     const login = async () => {
       try {
         await axios
-          .post('http://10.0.0.106:3000/infos', {
+          .post('http://172.25.253.89:3000/infos', {
             email,
           })
           .then((res) => {

@@ -13,7 +13,7 @@ const useSignInPasswordModel = () => {
     const login = async () => {
       try {
         await axios
-          .post('http://10.0.0.106:3000/login', {
+          .post('http://172.25.253.89:3000/login', {
             email,
             password,
           })
