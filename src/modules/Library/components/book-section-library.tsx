@@ -24,7 +24,7 @@ export default function BookSectionLibrary({ book }: BookSectionLibraryProps) {
     <TouchableOpacity
       key={book.id}
       activeOpacity={0.9}
-      className="w-[46.2%]"
+      className="w-[46%]"
       onPress={() => nav.navigate('book', { isbn: book.isbn })}
     >
       <View className="mb-10">
