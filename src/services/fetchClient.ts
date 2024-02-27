@@ -12,6 +12,10 @@ const fetchClient = {
   async post(url: string, data: object, accessToken?: object) {
     return (await axios.post(url, data, accessToken)).data
   },
+
+  async delete(url: string, header: object) {
+    return (await axios.delete(url, header)).data
+  },
 }
 
 export default fetchClient

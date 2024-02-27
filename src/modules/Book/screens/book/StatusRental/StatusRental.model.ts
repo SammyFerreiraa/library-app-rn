@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import useBookModel from '../Book.model'
 import { RentedProps } from '@/modules/Library/hooks/useRented'
-import axios from 'axios'
 import { Alert } from 'react-native'
 import { useCompletedRentals } from '@/modules/Library/hooks/useCompletedRentals'
+import apiService from '@/modules/Book/services/apiService'
 
 export const useStatusRentalModel = () => {
   const {
@@ -40,12 +40,8 @@ export const useStatusRentalModel = () => {
     const ret = async () => {
       setLoading(true)
       try {
-        await axios
-          .delete(`http://172.25.253.89:3000/rentals/${rentedBook?.id}`, {
-            headers: {
-              Authorization: 'Bearer ' + authData?.token,
-            },
-          })
+        await apiService(authData?.token)
+          .returnBook(rentedBook?.id as string)
           .then(() => {
             addCompletedRental({
               copy: rentedBook?.rental.copy,
@@ -83,20 +79,10 @@ export const useStatusRentalModel = () => {
     const rental = async () => {
       setLoading(true)
       try {
-        await axios
-          .post(
-            `http://172.25.253.89:3000/rentals`,
-            {
-              bookId: book?.id,
-            },
-            {
-              headers: {
-                Authorization: 'Bearer ' + authData?.token,
-              },
-            },
-          )
+        await apiService(authData?.token)
+          .rentalBook(book?.id as string)
           .then((res) => {
-            addRented(res.data.rental)
+            addRented(res.rental)
             setRental(true)
             setLoading(false)
           })

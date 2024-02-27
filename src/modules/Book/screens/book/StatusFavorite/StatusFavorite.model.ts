@@ -1,5 +1,5 @@
-import axios from 'axios'
 import useBookModel from '../Book.model'
+import apiService from '@/modules/Book/services/apiService'
 
 const useStatusFavoriteModel = () => {
   const {
@@ -14,9 +14,8 @@ const useStatusFavoriteModel = () => {
   } = useBookModel()
 
   const addFav = () => {
-    const add = async () => {
+    const exec = async () => {
       try {
-        if (!authData?.token) return
         addFavorite({
           id: book?.id as string,
           title: book?.title as string,
@@ -26,16 +25,8 @@ const useStatusFavoriteModel = () => {
           isbn: book?.isbn as string,
         })
         setFavorite(true)
-        await axios.post(
-          `http://172.25.253.89:3000/favorites`,
-          {
-            bookId: book?.id,
-          },
-          {
-            headers: {
-              Authorization: 'Bearer ' + authData?.token,
-            },
-          },
+        await apiService(authData?.token as string).addFavorite(
+          book?.id as string,
         )
       } catch (error) {
         console.log(error)
@@ -43,23 +34,17 @@ const useStatusFavoriteModel = () => {
         setFavorite(false)
       }
     }
-    add()
+    exec()
   }
 
   const removeFav = () => {
-    const remove = async () => {
+    const exec = async () => {
       try {
-        if (!authData?.token) return
         removeFavorite(book?.isbn as string)
         setFavorite(false)
-        await axios.delete(`http://172.25.253.89:3000/favorites`, {
-          headers: {
-            Authorization: 'Bearer ' + authData?.token,
-          },
-          data: {
-            bookId: book?.id,
-          },
-        })
+        await apiService(authData?.token as string).removeFavorite(
+          book?.id as string,
+        )
       } catch (error) {
         console.log(error)
         setFavorite(true)
@@ -73,7 +58,7 @@ const useStatusFavoriteModel = () => {
         })
       }
     }
-    remove()
+    exec()
   }
 
   return {
