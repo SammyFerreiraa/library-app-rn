@@ -3,7 +3,7 @@ import { useBook } from '@/hooks/useBook'
 import { useCompletedRentals } from '@/modules/Library/hooks/useCompletedRentals'
 import { useFavorites } from '@/modules/Library/hooks/useFavorites'
 import { useRented } from '@/modules/Library/hooks/useRented'
-import HomeService from '@/services/HomeService'
+import HomeService from '@/services/homeService'
 import fetchClient from '@/services/fetchClient'
 import { useEffect } from 'react'
 

@@ -1,7 +1,7 @@
 import { useAuth } from '@/hooks/useAuth'
-import axios from 'axios'
 import { useState } from 'react'
 import { useUser } from '../../hooks/useUser'
+import apiService from '../../services/apiService'
 
 const useSignInPasswordModel = () => {
   const { email, name, setEmail, setName } = useUser()
@@ -12,16 +12,13 @@ const useSignInPasswordModel = () => {
   const handleSignIn = () => {
     const login = async () => {
       try {
-        await axios
-          .post('http://172.25.253.89:3000/login', {
-            email,
-            password,
-          })
+        await apiService()
+          .login(email as string, password)
           .then((res) => {
             setPasswordError(false)
             setEmail('')
             setName('')
-            signIn(res.data)
+            signIn(res)
           })
       } catch (error) {
         setPasswordError(true)

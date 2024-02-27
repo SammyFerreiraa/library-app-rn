@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native'
-import axios from 'axios'
 import { useState } from 'react'
 import { useUser } from '../../hooks/useUser'
+import apiService from '../../services/apiService'
 const useSignInModel = () => {
   const { setEmail, setName } = useUser()
   const [email, setEmailInput] = useState<string>('')
@@ -11,14 +11,12 @@ const useSignInModel = () => {
   const handleSignIn = () => {
     const login = async () => {
       try {
-        await axios
-          .post('http://172.25.253.89:3000/infos', {
-            email,
-          })
+        await apiService()
+          .getInfos(email)
           .then((res) => {
             setEmailError(false)
-            setEmail(res.data.email)
-            setName(res.data.name)
+            setEmail(res.email)
+            setName(res.name)
             setEmailInput('')
             navigate('SignInPassword' as never)
           })

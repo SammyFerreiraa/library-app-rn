@@ -1,7 +1,7 @@
 import { useAuth } from '@/hooks/useAuth'
-import axios from 'axios'
 import { useNavigation } from 'expo-router'
 import { useState } from 'react'
+import apiService from '../../services/apiService'
 
 const useSignUpModel = () => {
   const [name, setName] = useState('')
@@ -14,14 +14,8 @@ const useSignUpModel = () => {
   const handleSignUp = () => {
     const signup = async (): Promise<boolean | undefined> => {
       try {
-        await axios
-          .post('http://172.25.253.89:3000/register', {
-            name,
-            email,
-            password,
-            city,
-            address,
-          })
+        await apiService()
+          .register({ name, email, password, city, address })
           .then(() => {
             return true
           })
@@ -34,13 +28,10 @@ const useSignUpModel = () => {
     signup().then(() => {
       const login = async () => {
         try {
-          await axios
-            .post('http://172.25.253.89:3000/login', {
-              email,
-              password,
-            })
+          apiService()
+            .login(email, password)
             .then((res) => {
-              signIn(res.data)
+              signIn(res)
             })
         } catch (error) {
           console.log(error)
