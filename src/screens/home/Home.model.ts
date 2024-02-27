@@ -3,7 +3,8 @@ import { useBook } from '@/hooks/useBook'
 import { useCompletedRentals } from '@/modules/Library/hooks/useCompletedRentals'
 import { useFavorites } from '@/modules/Library/hooks/useFavorites'
 import { useRented } from '@/modules/Library/hooks/useRented'
-import axios from 'axios'
+import HomeService from '@/services/HomeService'
+import fetchClient from '@/services/fetchClient'
 import { useEffect } from 'react'
 
 const useHomeModel = () => {
@@ -14,39 +15,27 @@ const useHomeModel = () => {
   const { authData } = useAuth()
 
   useEffect(() => {
+    const homeService = new HomeService(fetchClient, authData?.token ?? '')
+
     const getBooks = async () => {
-      await axios
-        .get('http://172.25.253.89:3000/books', {
-          headers: {
-            Authorization: 'Bearer ' + authData?.token,
-          },
-        })
-        .then((res) => {
-          setBooks(res.data)
-        })
+      try {
+        setBooks(await homeService.getBooks())
+      } catch (error) {
+        console.log(error)
+      }
     }
     getBooks()
-    const getLibrary = async () => {
-      await axios
-        .get(`http://172.25.253.89:3000/rentals/${authData?.user.id}`, {
-          headers: {
-            Authorization: 'Bearer ' + authData?.token,
-          },
-        })
-        .then((res) => {
-          setCompletedRentals(res.data)
-        })
 
-      await axios
-        .get(`http://172.25.253.89:3000/users`, {
-          headers: {
-            Authorization: 'Bearer ' + authData?.token,
-          },
-        })
-        .then((res) => {
-          setRented(res.data.books)
-          setFavorites(res.data.favorites)
-        })
+    const getLibrary = async () => {
+      try {
+        setCompletedRentals(
+          await homeService.getCompletedRentals(authData?.user.id ?? ''),
+        )
+        setRented(await homeService.getRented())
+        setFavorites(await homeService.getFavorites())
+      } catch (error) {
+        console.log(error)
+      }
     }
     getLibrary()
   }, [
