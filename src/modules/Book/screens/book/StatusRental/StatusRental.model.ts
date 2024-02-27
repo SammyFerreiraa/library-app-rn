@@ -24,7 +24,6 @@ export const useStatusRentalModel = () => {
   const returnBook = () => {
     if (!authData?.token) return
     if (!rentedBook) return
-    console.log(rentedBook?.id)
     Alert.alert(
       'Devolver Livro',
       'Deseja realmente devolver este livro?',
