@@ -1,5 +1,6 @@
 {
   "extends": "expo/tsconfig.base",
+  "types": ["node", "jest", "@testing-library/jest-dom"],
   "compilerOptions": {
     "strict": true,
     "paths": {
