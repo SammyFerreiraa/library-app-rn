@@ -3,7 +3,7 @@ import { Header } from '.'
 import { NavigationContainer } from '@react-navigation/native'
 
 describe('Header', () => {
-  test('should render correctly', () => {
+  it('should render correctly', () => {
     render(
       <NavigationContainer>
         <Header />
