@@ -17,7 +17,7 @@ class HomeService {
           headers: this.accessToken,
         },
       )
-      return response
+      if (response.data) return response.data
     } catch (error) {
       console.log(error)
     }
@@ -32,7 +32,7 @@ class HomeService {
           headers: this.accessToken,
         },
       )
-      return response
+      return response.data
     } catch (error) {
       console.log(error)
     }
@@ -46,7 +46,7 @@ class HomeService {
           headers: this.accessToken,
         },
       )
-      return response.books
+      return response.data.books
     } catch (error) {
       console.log(error)
     }
@@ -60,7 +60,7 @@ class HomeService {
           headers: this.accessToken,
         },
       )
-      return response.favorites
+      return response.data.favorites
     } catch (error) {
       console.log(error)
     }

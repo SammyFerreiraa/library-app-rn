@@ -43,7 +43,7 @@ class BookServices {
           headers: this.accessToken,
         },
       )
-      return response
+      return response.data
     } catch (error) {
       console.log(error)
     }

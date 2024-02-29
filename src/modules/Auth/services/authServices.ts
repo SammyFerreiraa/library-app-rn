@@ -13,7 +13,7 @@ class AuthServices {
           email,
         },
       )
-      return response
+      return response.data
     } catch (error) {
       console.log(error)
     }
@@ -28,7 +28,7 @@ class AuthServices {
           password,
         },
       )
-      return response
+      return response.data
     } catch (error) {
       console.log(error)
     }

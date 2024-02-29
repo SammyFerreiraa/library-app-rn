@@ -15,6 +15,7 @@ const useSignInPasswordModel = () => {
         await apiService()
           .login(email as string, password)
           .then((res) => {
+            if (res === undefined) throw new Error('Error')
             setPasswordError(false)
             setEmail('')
             setName('')
