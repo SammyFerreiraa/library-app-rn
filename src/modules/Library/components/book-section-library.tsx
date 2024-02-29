@@ -1,5 +1,4 @@
-import { StackNavigationProp } from '@react-navigation/stack'
-import { useNavigation } from 'expo-router'
+import useNavigationCustom from '@/hooks/useNavigation'
 import { TouchableOpacity, View, Image, Text } from 'react-native'
 
 type BookSectionLibraryProps = {
@@ -14,12 +13,8 @@ type BookSectionLibraryProps = {
   }
 }
 
-type RootStackParamList = {
-  book: { isbn: string } | undefined
-}
-
 export default function BookSectionLibrary({ book }: BookSectionLibraryProps) {
-  const nav = useNavigation<StackNavigationProp<RootStackParamList>>()
+  const { nav } = useNavigationCustom()
   return (
     <TouchableOpacity
       key={book.id}

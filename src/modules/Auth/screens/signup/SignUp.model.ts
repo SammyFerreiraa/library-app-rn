@@ -1,7 +1,7 @@
 import { useAuth } from '@/hooks/useAuth'
-import { useNavigation } from 'expo-router'
 import { useState } from 'react'
 import apiService from '../../services/apiService'
+import { useNavigation } from '@react-navigation/native'
 
 const useSignUpModel = () => {
   const [name, setName] = useState('')

@@ -1,5 +1,13 @@
+import { render } from '@testing-library/react-native'
+import { Header } from '.'
+import { NavigationContainer } from '@react-navigation/native'
+
 describe('Header', () => {
-  it('should render correctly', () => {
-    expect(1).toBe(1)
+  test('should render correctly', () => {
+    render(
+      <NavigationContainer>
+        <Header />
+      </NavigationContainer>,
+    )
   })
 })
