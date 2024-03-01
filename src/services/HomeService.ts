@@ -17,7 +17,7 @@ class HomeService {
           headers: this.accessToken,
         },
       )
-      if (response.data) return response.data
+      return response.data
     } catch (error) {
       console.log(error)
     }
