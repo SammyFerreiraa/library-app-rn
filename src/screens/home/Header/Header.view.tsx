@@ -15,6 +15,7 @@ const HeaderView = ({ nav }: ReturnType<typeof useHeaderModel>) => {
       </View>
       <TouchableOpacity
         activeOpacity={0.7}
+        testID="menu"
         onPress={() => {
           nav.navigate('menu' as never)
         }}
