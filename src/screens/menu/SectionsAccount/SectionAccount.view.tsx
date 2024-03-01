@@ -35,7 +35,7 @@ const SectionAccountView = ({
         </ItemSection.Icon>
         <ItemSection.Title title="FAQs" />
       </ItemSection>
-      <ItemSection onPress={signOut}>
+      <ItemSection onPress={signOut} testID="sign-out">
         <ItemSection.Icon>
           <MaterialIcons name="logout" size={24} color="white" />
         </ItemSection.Icon>

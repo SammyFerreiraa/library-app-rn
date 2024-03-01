@@ -11,6 +11,7 @@ const HeaderView = ({ nav }: ReturnType<typeof useHeaderModel>) => {
           name="chevron-left"
           size={24}
           color="white"
+          testID="back-menu"
           onPress={() => nav.goBack()}
         />
         <Text className="text-lg font-semibold text-white">Menu</Text>
