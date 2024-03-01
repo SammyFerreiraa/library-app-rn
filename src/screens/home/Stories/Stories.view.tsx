@@ -7,6 +7,7 @@ const StoriesView = ({ books }: ReturnType<typeof useStoriesModel>) => {
   return (
     <ScrollView
       horizontal
+      testID="stories"
       className="gap-0"
       contentContainerStyle={{ paddingHorizontal: 16, gap: 8 }}
       showsHorizontalScrollIndicator={false}
