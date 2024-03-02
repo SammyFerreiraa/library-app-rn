@@ -35,11 +35,13 @@ const SignInView = ({
             onSubmitEditing={handleSignIn}
             returnKeyType="next"
             blurOnSubmit
+            testID="emailTextInput"
           />
           <TouchableOpacity
             className="items-center justify-center rounded-xl bg-white p-4"
             activeOpacity={0.7}
             onPress={handleSignIn}
+            testID="signin"
           >
             <Text className="font-bold">Continue</Text>
           </TouchableOpacity>
@@ -95,6 +97,7 @@ const SignInView = ({
           </Text>
           <TouchableOpacity
             activeOpacity={0.7}
+            testID="signup"
             onPress={() => navigate('SignUp' as never)}
           >
             <Text className="font-bold text-white">SignUp</Text>
