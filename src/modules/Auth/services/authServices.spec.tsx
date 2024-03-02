@@ -89,4 +89,43 @@ describe('AuthServices', () => {
       expect(console.log).toHaveBeenCalledWith(new Error(errorMessage))
     })
   })
+
+  describe('Register User', () => {
+    it('should call httpClient.post with the correct URL and headers', async () => {
+      await authServices.register({
+        name: 'name',
+        email: 'email',
+        password: 'password',
+        city: 'city',
+        address: 'address',
+      })
+
+      expect(mockHttpClient.post).toHaveBeenCalledWith(
+        'http://172.25.253.89:3000/register',
+        {
+          name: 'name',
+          email: 'email',
+          password: 'password',
+          city: 'city',
+          address: 'address',
+        },
+      )
+    })
+
+    it('should handle errors gracefully', async () => {
+      jest.spyOn(console, 'log').mockImplementation(() => {})
+
+      const errorMessage = 'Failed to register'
+      mockHttpClient.post.mockRejectedValueOnce(new Error(errorMessage))
+
+      await authServices.register({
+        name: 'name',
+        email: 'email',
+        password: 'password',
+        city: 'city',
+        address: 'address',
+      })
+      expect(console.log).toHaveBeenCalledWith(new Error(errorMessage))
+    })
+  })
 })
