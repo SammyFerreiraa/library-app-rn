@@ -7,7 +7,6 @@ import {
   TextInput,
   TouchableOpacity,
 } from 'react-native'
-import Checked from '../../utils/icons/Checked.svg'
 import useSignInPasswordModel from './SignInPassword.model'
 
 const SignInPasswordView = ({
@@ -38,7 +37,7 @@ const SignInPasswordView = ({
               <Text className="text-white">{email}</Text>
             </View>
           </View>
-          <Checked />
+          {/* <Checked /> */}
         </View>
         <View className="flex-col gap-4 opacity-100">
           <TextInput
@@ -50,11 +49,13 @@ const SignInPasswordView = ({
             onSubmitEditing={handleSignIn}
             returnKeyType="next"
             blurOnSubmit
+            testID="passwordTextInput"
           />
           <TouchableOpacity
             className="items-center justify-center rounded-xl bg-white p-4"
             activeOpacity={0.7}
             onPress={handleSignIn}
+            testID="login"
           >
             <Text className="font-bold">Continue</Text>
           </TouchableOpacity>
