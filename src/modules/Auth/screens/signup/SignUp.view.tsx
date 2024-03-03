@@ -87,6 +87,7 @@ const SignUpView = ({
               className="items-center justify-center rounded-xl bg-white p-4"
               activeOpacity={0.7}
               onPress={handleSignUp}
+              testID="registerButton"
             >
               <Text className="font-bold">Create Account</Text>
             </TouchableOpacity>
@@ -98,6 +99,7 @@ const SignUpView = ({
             <TouchableOpacity
               activeOpacity={0.7}
               onPress={() => navigate('SignIn' as never)}
+              testID="toLoginButton"
             >
               <Text className="font-bold text-white">Log in</Text>
             </TouchableOpacity>

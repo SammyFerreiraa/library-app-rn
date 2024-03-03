@@ -31,7 +31,7 @@ describe('SignIn', () => {
 
     fireEvent.press(component)
 
-    expect(signInData.navigate).toHaveBeenCalled()
+    expect(signInData.navigate).toHaveBeenCalledWith('SignUp')
   })
 
   it('should render correctly when emailTextInput is true', () => {
