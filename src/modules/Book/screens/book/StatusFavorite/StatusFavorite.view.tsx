@@ -11,12 +11,20 @@ const StatusFavoriteView = ({
   return (
     <>
       {favorite && (
-        <TouchableOpacity activeOpacity={0.7} onPress={removeFav}>
+        <TouchableOpacity
+          activeOpacity={0.7}
+          onPress={removeFav}
+          testID="remove-favorite"
+        >
           <Entypo name="heart" size={28} color="red" />
         </TouchableOpacity>
       )}
       {!favorite && (
-        <TouchableOpacity activeOpacity={0.7} onPress={addFav}>
+        <TouchableOpacity
+          activeOpacity={0.7}
+          onPress={addFav}
+          testID="add-favorite"
+        >
           <Entypo name="heart-outlined" size={28} color="white" />
         </TouchableOpacity>
       )}

@@ -30,6 +30,7 @@ const StatusRentalView = ({
             className="flex-1 flex-row items-center justify-center gap-3"
             activeOpacity={0.7}
             onPress={returnBook}
+            testID="return-book"
           >
             {loading && (
               <ActivityIndicator
@@ -53,6 +54,7 @@ const StatusRentalView = ({
             className="flex-1 flex-row items-center justify-center gap-3"
             activeOpacity={0.7}
             onPress={rentalBook}
+            testID="rental-book"
           >
             {loading && (
               <ActivityIndicator
