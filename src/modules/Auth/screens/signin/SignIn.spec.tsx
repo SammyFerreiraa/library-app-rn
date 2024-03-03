@@ -34,9 +34,21 @@ describe('SignIn', () => {
     expect(signInData.navigate).toHaveBeenCalled()
   })
 
-  it('should render correctly when emailError is true', () => {
+  it('should render correctly when emailTextInput is true', () => {
     const component = RenderComponent().getByTestId('emailTextInput')
 
-    expect(component)
+    expect(component.props.style).toContainEqual({
+      borderBottomWidth: 2,
+      borderLeftWidth: 2,
+      borderRightWidth: 2,
+      borderTopWidth: 2,
+    })
+
+    expect(component.props.style).toContainEqual({
+      borderBottomColor: '#ef4444',
+      borderLeftColor: '#ef4444',
+      borderRightColor: '#ef4444',
+      borderTopColor: '#ef4444',
+    })
   })
 })
