@@ -20,6 +20,7 @@ const SearchView = ({
         value={search}
         onChangeText={setSearch}
         placeholderTextColor={'#939999'}
+        testID="searchInput"
         className="w-full rounded-md border-[1px] border-[#939999] bg-[#313333] py-3 pl-11 pr-11 text-white"
         returnKeyType="next"
       />
