@@ -5,8 +5,10 @@ const SectionsData = {
   books: [],
 }
 
-test('Sections Explorer', () => {
-  render(<SectionsView {...SectionsData} />)
-  expect(screen.getByText('Ficção')).toBeTruthy()
-  expect(screen.getByText('Mitologia')).toBeTruthy()
+describe('Sections Explorer', () => {
+  it('should render the sections', () => {
+    render(<SectionsView {...SectionsData} />)
+    expect(screen.getByText('Ficção')).toBeTruthy()
+    expect(screen.getByText('Mitologia')).toBeTruthy()
+  })
 })

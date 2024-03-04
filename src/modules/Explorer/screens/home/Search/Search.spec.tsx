@@ -1,19 +1,31 @@
-import { fireEvent, render } from '@testing-library/react-native'
+import React from 'react'
+import { render, fireEvent } from '@testing-library/react-native'
 import SearchView from './Search.view'
 
-const mockSearch = {
-  search: 'livro',
-  setSearch: jest.fn(),
-}
+// Mock da função setSearch
+const setSearchMock = jest.fn()
 
-test('Search Explorer', () => {
-  const component = render(<SearchView {...mockSearch} />).getByTestId(
-    'searchInput',
-  )
+describe('SearchView ', () => {
+  let component: ReturnType<typeof render>
+  beforeEach(() => {
+    component = render(<SearchView search="Livro" setSearch={setSearchMock} />)
+  })
 
-  expect(component.props.value).toBe('livro')
+  afterEach(() => {
+    jest.clearAllMocks()
+  })
 
-  fireEvent.changeText(component, 'novo livro')
+  it('render correctly search', () => {
+    const searchInput = component.getByTestId('searchInput')
 
-  expect(mockSearch.setSearch).toHaveBeenCalledWith('novo livro')
+    expect(searchInput.props.value).toBe('Livro')
+  })
+
+  it('clean input', () => {
+    const clearInputIcon = component.getByTestId('clearInput')
+
+    fireEvent.press(clearInputIcon)
+
+    expect(setSearchMock).toHaveBeenCalledWith('')
+  })
 })

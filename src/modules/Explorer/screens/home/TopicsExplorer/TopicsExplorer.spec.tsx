@@ -21,4 +21,19 @@ test('Topics Explorer', () => {
 
   fireEvent.press(screen.getByText('Ficção'))
   expect(mockNavigate).toHaveBeenCalledWith('category', { category: 'Ficção' })
+
+  fireEvent.press(screen.getByText('Mitologia'))
+  expect(mockNavigate).toHaveBeenCalledWith('category', {
+    category: 'Mitologia',
+  })
+
+  fireEvent.press(screen.getByText('Romance'))
+  expect(mockNavigate).toHaveBeenCalledWith('category', {
+    category: 'Romance',
+  })
+
+  fireEvent.press(screen.getByText('Mangás'))
+  expect(mockNavigate).toHaveBeenCalledWith('category', {
+    category: 'Mangás',
+  })
 })

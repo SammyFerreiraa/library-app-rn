@@ -31,6 +31,7 @@ const SearchView = ({
           color="#939999"
           style={{ top: 15, right: 16, position: 'absolute', zIndex: 2 }}
           onPress={() => setSearch('')}
+          testID="clearInput"
         />
       )}
     </View>
