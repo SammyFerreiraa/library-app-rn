@@ -1,7 +1,7 @@
 import useNavigationCustom from '@/hooks/useNavigation'
 import { TouchableOpacity, View, Image, Text } from 'react-native'
 
-type BookSectionLibraryProps = {
+export type BookSectionLibraryProps = {
   book: {
     id: string
     image: string

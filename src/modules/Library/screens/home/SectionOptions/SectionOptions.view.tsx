@@ -3,7 +3,7 @@ import { Fontisto, MaterialIcons, AntDesign } from '@expo/vector-icons'
 import { ScrollView, TouchableOpacity, Text } from 'react-native'
 import useSectionOptionsModel from './SectionOptions.model'
 
-const optionsSelectView = ({
+const OptionsSelectView = ({
   options,
   setOptions,
 }: ReturnType<typeof useSectionOptionsModel>) => {
@@ -66,4 +66,4 @@ const optionsSelectView = ({
   )
 }
 
-export default optionsSelectView
+export default OptionsSelectView
