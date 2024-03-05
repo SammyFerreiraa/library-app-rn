@@ -93,7 +93,7 @@ const SignInView = ({
         </View>
         <View className="flex-row justify-center gap-1">
           <Text className="text-center text-white">
-            Don&apos;t have a account?
+            Don&apos;t have an account?
           </Text>
           <TouchableOpacity
             activeOpacity={0.7}
